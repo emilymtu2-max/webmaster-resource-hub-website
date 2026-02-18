@@ -61,7 +61,7 @@ export default function SuggestionsFormPage() {
             </nav>
 
             <img
-              src="/images/PULSEASIALOGO.png"
+              src="/PULSEASIALOGO.png"
               alt="Pulse Asia Logo"
               className="footer-logo"
             />

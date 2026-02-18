@@ -78,7 +78,7 @@ export default function RootLayout({
               </nav>
 
               <img
-                src="/images/PULSEASIALOGO.png"
+                src="/PULSEASIALOGO.png"
                 alt="Pulse Asia Logo"
                 className="footer-logo"
               />

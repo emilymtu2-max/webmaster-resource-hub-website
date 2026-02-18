@@ -59,7 +59,7 @@ export default function AboutUs() {
             <br />
             <br />
             <img
-              src="/images/aboutus-community.jpg"
+              src="/aboutus-community.jpg"
               alt="Community"
               className="image-container"
             />
@@ -100,7 +100,7 @@ export default function AboutUs() {
             <br />
             <br />
             <img
-              src="/images/aboutus-compassion.jpg"
+              src="/aboutus-compassion.jpg"
               alt="Compassion"
               className="image-container"
             />
@@ -115,7 +115,7 @@ export default function AboutUs() {
             <br />
             <br />
             <img
-              src="/images/aboutus-culture.jpg"
+              src="/aboutus-culture.jpg"
               alt="Culture"
               className="image-container"
             />
