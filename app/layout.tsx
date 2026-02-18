@@ -24,22 +24,16 @@ export default function RootLayout({
             </Link>
             <ul className="navbar__menu">
               <li>
-                <Link href="/aboutus">About Us</Link>
+                <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="/resourcesPage">Resource Hub</Link>
+                <Link href="/resources">Resource Hub</Link>
               </li>
               <li>
-                <Link href="/topthreeresources">Top Three Resources</Link>
-              </li>
-              <li>
-                <Link href="/suggestions">Suggestions</Link>
+                <Link href="/form-suggestions-page">Suggestions</Link>
               </li>
               <li>
                 <Link href="/references">References</Link>
-              </li>
-              <li>
-                <Link href="/interactiveMap">Interactive Maps</Link>
               </li>
             </ul>
           </div>
@@ -69,12 +63,10 @@ export default function RootLayout({
 
             <div className="footer-right">
               <nav className="footer-links">
-                <Link href="/aboutus">About Us</Link>
-                <Link href="/resourcesPage">Resource Hub</Link>
-                <Link href="/topthreeresources">Top Three Resources</Link>
-                <Link href="/suggestions">Suggestions</Link>
-                <Link href="/references">References</Link>
-                <Link href="/interactiveMap">Interactive Maps</Link>
+                <Link href="/about">About Us</Link>
+                <Link href="/resources">Resource Hub</Link>
+                <Link href="/form-suggestions-page">Suggestions</Link>
+                <Link href="/references">References</Link> {/*Currently footer and header missing map page and top three resources page, but can easily be added here when those pages are created*/}
               </nav>
 
               <img
