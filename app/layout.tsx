@@ -33,6 +33,9 @@ export default function RootLayout({
                 <Link href="/resources">Resource Hub</Link>
               </li>
               <li>
+                <Link href="/map">Interactive Map</Link>
+              </li>
+              <li>
                 <Link href="/form-suggestions-page">Suggestions</Link>
               </li>
               <li>
@@ -71,6 +74,7 @@ export default function RootLayout({
                 <Link href="/about">About Us</Link>
                 <Link href="/resources">Resource Hub</Link>
                 <Link href="/form-suggestions-page">Suggestions</Link>
+                <Link href="/map">Interactive Map</Link>
                 <Link href="/references">References</Link> {/*Currently footer and header missing map page and top three resources page, but can easily be added here when those pages are created*/}
               </nav>
 
