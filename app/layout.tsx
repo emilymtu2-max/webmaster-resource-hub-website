@@ -1,7 +1,9 @@
 // app/layout.tsx
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = {
   title: "PulseAsia",
@@ -10,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className="antialiased">
@@ -22,24 +24,25 @@ export default function RootLayout({
             <Link href="/" id="navbar__logo">
               PulseAsia
             </Link>
+
             <ul className="navbar__menu">
               <li>
-                <Link href="/aboutus">About Us</Link>
+                <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="/resourcesPage">Resource Hub</Link>
+                <Link href="/resources">Resource Hub</Link>
               </li>
               <li>
-                <Link href="/topthreeresources">Top Three Resources</Link>
+                <Link href="/resources">Top Three Resources</Link>
               </li>
               <li>
-                <Link href="/suggestions">Suggestions</Link>
+                <Link href="/form-suggestions-page">Suggestions</Link>
               </li>
               <li>
                 <Link href="/references">References</Link>
               </li>
               <li>
-                <Link href="/interactiveMap">Interactive Maps</Link>
+                <Link href="/map">Interactive Maps</Link>
               </li>
             </ul>
           </div>
@@ -64,17 +67,19 @@ export default function RootLayout({
                 <br />
                 12033 NE 80th St, Kirkland, WA 98033
               </p>
-              <p className="footer-copyright">©2025 Pulse Asia. All Rights Reserved.</p>
+              <p className="footer-copyright">
+                ©2025 Pulse Asia. All Rights Reserved.
+              </p>
             </div>
 
             <div className="footer-right">
               <nav className="footer-links">
-                <Link href="/aboutus">About Us</Link>
-                <Link href="/resourcesPage">Resource Hub</Link>
-                <Link href="/topthreeresources">Top Three Resources</Link>
-                <Link href="/suggestions">Suggestions</Link>
+                <Link href="/about">About Us</Link>
+                <Link href="/resources">Resource Hub</Link>
+                <Link href="/references">Top Three Resources</Link>
+                <Link href="/form-suggestions-page">Suggestions</Link>
                 <Link href="/references">References</Link>
-                <Link href="/interactiveMap">Interactive Maps</Link>
+                <Link href="/resources">Interactive Maps</Link>
               </nav>
 
               <img
