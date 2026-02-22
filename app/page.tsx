@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -34,9 +35,9 @@ export default function Home() {
             <p className="hero-banner-subtitle">
               Explore our resource hub to find your next step
             </p>
-            <a href="/resourcesPage" className="hero-banner-btn">
+            <Link href="/resources" className="hero-banner-btn">
               Explore More Resources
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -112,9 +113,9 @@ export default function Home() {
               <br />
               events, or services you know about.
             </p>
-            <a href="/suggestions" className="community-btn">
+            <Link href="/form-suggestions-page" className="community-btn">
               Share Now
-            </a>
+            </Link>
           </div>
 
           <div className="community-image">
