@@ -1,44 +1,64 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+function CarouselDemo() {
+  return (
+    <Carousel className="w-full max-w-[12rem] sm:max-w-xs">
+      <CarouselContent>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index}>
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-4xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="main">
-        <Button>Get Started</Button>
-        <div className="main__heroContent">
-          <div className="main__heroWords">
-            <h1>
-              Find <span>Support</span>
-              <br />
-              Explore <span>Culture</span>
-              <br />
-              Build <span>Community</span>
-            </h1>
-            <p>
-              Our Organization is committed to supporting Asian American immigrants across several
-              <br />
-              different countries in adjusting to America in the Pacific Northwest
-            </p>
-            <p className="scrollArrow">Keep Scrolling &darr;</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Hero Banner */}
-      <section className="hero-banner">
-        <div className="hero-banner-bg">
-          <div className="hero-banner-content">
-            <h1 className="hero-banner-title">PulseAsia is Built to Help</h1>
-            <p className="hero-banner-subtitle">
-              Explore our resource hub to find your next step
+      <div
+        className="hero min-h-screen"
+        style={{
+          backgroundImage:
+            "url(/homeimage.jpg)",
+        }}
+  >
+        <div className="hero-overlay"></div>
+        <div className="hero-content text-neutral-content text-center">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold"> Find Support, Explore Culture, Build Community </h1>
+            <p className="mb-5">
+            Our Organization is committed to supporting Asian American immigrants across several different countries in adjusting to America in the Pacific Northwest
             </p>
-            <Link href="/resources" className="hero-banner-btn">
-              Explore More Resources
-            </Link>
-          </div>
+              <button className="btn btn-primary text-primary-content">Explore Resources</button>
+           </div>
+         </div>
+      </div>
+
+      <section className="py-10">
+        <div className="mx-auto flex w-full max-w-6xl justify-center px-4">
+          <CarouselDemo />
         </div>
       </section>
 

@@ -5,7 +5,9 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, caramellatte;
+}
 
 @theme inline {
   --color-background: var(--background);
