@@ -25,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" data-theme="caramellatte">
-      <body className="antialiased">
+      <body className="bg-base-100 text-base-content antialiased">
         {/* Navbar */}
         <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/95 text-base-content shadow-sm backdrop-blur">
           <div className="flex-1">
@@ -74,47 +74,66 @@ export default function RootLayout({
             </div>
           </div>
         </div>
+        
 
         {/* Main page content */}
         <main>{children}</main>
 
         {/* Footer */}
-        <footer className="site-footer">
-          <div className="footer-content">
-            <div className="footer-left">
-              <a href="mailto:ali.samina.star@gmail.com" className="contact-btn">
-                Contact Us:
-              </a>
-              <p>Email: info@pulseasia.com</p>
-              <p>Phone: 425-471-4324</p>
-              <p className="footer-created">
-                Created by students of:
-                <br />
-                Lake Washington High School
-                <br />
-                12033 NE 80th St, Kirkland, WA 98033
-              </p>
-              <p className="footer-copyright">
-                ©2025 Pulse Asia. All Rights Reserved.
-              </p>
-            </div>
+        <footer className="footer bg-base-200 p-10 text-base-content sm:footer-horizontal">
+          <aside>
+            <img
+              src="/PULSEASIALOGO.png"
+              alt="Pulse Asia Logo"
+              className="h-48 w-48rounded-md object-contain"
+            />
+            <p className="text-base">
+              <br />
+              Supporting Asian American Immigrants in the Pacific Northwest since 2021
+            </p>
+          </aside>
 
-            <div className="footer-right">
-              <nav className="footer-links">
-                <Link href="/about">About Us</Link>
-                <Link href="/resources">Resource Hub</Link>
-                <Link href="/form-suggestions-page">Suggestions</Link>
-                <Link href="/map">Interactive Map</Link>
-                <Link href="/references">References</Link> {/*Currently footer and header missing map page and top three resources page, but can easily be added here when those pages are created*/}
-              </nav>
+          <nav>
+            <h6 className="footer-title">Categories Of Help</h6>
+            <a className="link link-hover">Legal</a>
+            <a className="link link-hover">Educational</a>
+            <a className="link link-hover">Career/Employment</a>
+            <a className="link link-hover">Culture</a>
+            <a className="link link-hover">Health/Wellness</a>
+          </nav>
 
-              <img
-                src="/PULSEASIALOGO.png"
-                alt="Pulse Asia Logo"
-                className="footer-logo"
-              />
-            </div>
-          </div>
+          <nav>
+            <h6 className="footer-title">Quick Links</h6>
+            <Link href="/about" className="link link-hover">
+              About Us
+            </Link>
+            <Link href="/resources" className="link link-hover">
+              Resource Hub
+            </Link>
+            <Link href="/map" className="link link-hover">
+              Interactive Map
+            </Link>
+            <Link href="/form-suggestions-page" className="link link-hover">
+              Suggestions
+            </Link>
+            <Link href="/references" className="link link-hover">
+              References
+            </Link>
+          </nav>
+
+          <nav>
+            <h6 className="footer-title">Connect With Us</h6>
+            <a href="mailto:info@pulseasia.com" className="btn btn-primary btn-sm w-fit">
+              Contact Us
+            </a>
+            <a className="link link-hover">98034 118th Ct Street, Seattle, WA</a>
+            <a href="tel:+11234567890" className="link link-hover">
+              (123) 456-7890
+            </a>
+            <a href="mailto:info@pulseasia.com" className="link link-hover">
+              info@pulseasia.com
+            </a>
+          </nav>
         </footer>
       </body>
     </html>

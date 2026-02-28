@@ -12,6 +12,8 @@ export default function AboutUs() {
             <li><a href="../topthreeresources/topthreeresources.html">Top Three Resources</a></li>
             <li><a href="../suggestions/suggestions.html">Suggestions</a></li>
             <li><a href="../References/references.html">References</a></li>
+            
+            
             <li><a href="../interactiveMap/map.html">Interactive Maps</a></li>
           </ul>
         </div>
