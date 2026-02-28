@@ -75,7 +75,7 @@ export default function RootLayout({
           </div>
         </div>
         
-
+        
         {/* Main page content */}
         <main>{children}</main>
 
