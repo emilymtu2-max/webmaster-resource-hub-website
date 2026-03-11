@@ -149,6 +149,13 @@ export default function Home() {
           />
         </div>
       </section>
+
+        <a
+          href="/login"
+          className="inline-block px-4 py-2 mt-2 rounded-md bg-blue-500 text-white font-semibold hover:bg-blue-600 transition"
+        >
+          Go to Login Page (Temporary)
+        </a>
     </>
   );
 }
