@@ -1,5 +1,5 @@
 'use client';
-
+import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from 'react';
 import React from 'react';
 
@@ -13,6 +13,7 @@ interface FormState {
 }
 
 export default function SuggestionsFormPage() {
+  const router = useRouter();
   const [form, setForm] = useState<FormState>({
     firstName: '', lastName: '', phone: '', email: '',
     whereFound: '', sourceLink: '',
@@ -33,11 +34,7 @@ export default function SuggestionsFormPage() {
       });
 
       if (res.ok) {
-        setStatus('success');
-        setForm({ firstName: '', lastName: '', phone: '', email: '', whereFound: '', sourceLink: '' });
-      } else {
-        const data = await res.json();
-        setStatus(data.error || 'error');
+        router.push("/form-suggestions-page");
       }
     } catch {
       setStatus('Something went wrong. Please try again.');
