@@ -1,3 +1,4 @@
+// app/page.tsx
 import { Card, CardContent } from "@/components/ui/card";
 import FeatureHero from "@/components/FeatureHero";
 import InfoCard from "@/components/InfoCard";
@@ -8,6 +9,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
+import SmallGlobe from "@/components/SmallGlobe"; // client-only globe
 
 const quickSupportCards = [
   {
@@ -30,27 +33,33 @@ const quickSupportCards = [
 const carouselCards = [
   {
     title: "Jomari's Story",
-    description: "“When I first moved to Seattle from the Philippines, I felt lost and overwhelmed. But through community events and local resources, I found a supportive network that helped me thrive.”",
+    description:
+      "“When I first moved to Seattle from the Philippines, I felt lost and overwhelmed. But through community events and local resources, I found a supportive network that helped me thrive.”",
   },
   {
     title: "Samina's Journey",
-    description: "PulseAsia connected me to legal guidance and educational opportunities that transformed my family's life. We are now thriving in our new home.",
+    description:
+      "PulseAsia connected me to legal guidance and educational opportunities that transformed my family's life. We are now thriving in our new home.",
   },
   {
     title: "Yuji's Experience",
-    description: "I was able to find culturally aware mental health support through PulseAsia, which made a huge difference in my adjustment to life in the Pacific Northwest.",
+    description:
+      "I was able to find culturally aware mental health support through PulseAsia, which made a huge difference in my adjustment to life in the Pacific Northwest.",
   },
   {
     title: "Peiying's Path",
-    description: "Thanks to PulseAsia, I discovered local cultural events that helped me connect with my heritage and build a supportive community in my new city.",
+    description:
+      "Thanks to PulseAsia, I discovered local cultural events that helped me connect with my heritage and build a supportive community in my new city.",
   },
   {
     title: "Gojo's Story",
-    description: "PulseAsia provided me with resources and connections that made my transition to life in the Pacific Northwest smoother and more fulfilling. I found a community that truly understands and supports me.",
+    description:
+      "PulseAsia provided me with resources and connections that made my transition to life in the Pacific Northwest smoother and more fulfilling. I found a community that truly understands and supports me.",
   },
   {
     title: "Megumi's Journey",
-    description: "Through PulseAsia, I found a network of support that helped me navigate the challenges of adjusting to life in the Pacific Northwest. The resources and community connections I gained were invaluable in helping me thrive in my new home.",
+    description:
+      "Through PulseAsia, I found a network of support that helped me navigate the challenges of adjusting to life in the Pacific Northwest. The resources and community connections I gained were invaluable in helping me thrive in my new home.",
   },
 ];
 
@@ -106,6 +115,11 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Small Globe Section */}
+      <section className="py-20 bg-gray-50">
+        <SmallGlobe />
+      </section>
+
       {/* Quick Support Section */}
       <section className="py-32">
         <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
@@ -142,7 +156,7 @@ export default function Home() {
           <FeatureHero
             imageSrc="/indiabeauty.jpg"
             imageAlt="Community support"
-            title="Your Knowedge is Power"
+            title="Your Knowledge is Power"
             description="Help us connect our community by adding programs, events, or services you know about."
             buttonLabel="Share Now"
             buttonHref="/form-suggestions-page"
@@ -150,12 +164,12 @@ export default function Home() {
         </div>
       </section>
 
-        <a
-          href="/login"
-          className="inline-block px-4 py-2 mt-2 rounded-md bg-blue-500 text-white font-semibold hover:bg-blue-600 transition"
-        >
-          Go to Login Page (Temporary)
-        </a>
+      <a
+        href="/login"
+        className="inline-block px-4 py-2 mt-2 rounded-md bg-blue-500 text-white font-semibold hover:bg-blue-600 transition"
+      >
+        Go to Login Page (Temporary)
+      </a>
     </>
   );
 }
