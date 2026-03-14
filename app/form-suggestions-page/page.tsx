@@ -24,22 +24,26 @@ export default function SuggestionsFormPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => {
-    setStatus(null);
-    try {
-      const res = await fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+ const handleSubmit = async () => {
+  setStatus(null);
 
-      if (res.ok) {
-        router.push("/form-suggestions-page");
-      }
-    } catch {
-      setStatus('Something went wrong. Please try again.');
+  try {
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    });
+
+    if (res.ok) {
+      router.push("/form");   // goes to your thank you page
+    } else {
+      setStatus("Submission failed.");
     }
-  };
+
+  } catch {
+    setStatus('Something went wrong. Please try again.');
+  }
+};
 
   return (
     <main style={styles.page}>
