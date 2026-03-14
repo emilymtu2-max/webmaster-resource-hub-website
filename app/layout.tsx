@@ -21,6 +21,7 @@ export default function RootLayout({
     { href: "/map", label: "Interactive Map" },
     { href: "/form-suggestions-page", label: "Suggestions" },
     { href: "/references", label: "References" },
+    { href: "/stat", label: "Immigration Stats" },
   ];
 
   return (
@@ -118,6 +119,9 @@ export default function RootLayout({
             </Link>
             <Link href="/references" className="link link-hover">
               References
+            </Link>
+            <Link href="/stat" className="link link-hover">
+              Immigration Stats
             </Link>
           </nav>
 
