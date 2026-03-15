@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { saveSession, SessionUser } from "@/lib/session";
 
 const asianCountries = [
   "China",
@@ -37,6 +39,7 @@ function validatePassword(password: string) {
 }
 
 export default function Signup() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [country, setCountry] = useState("");
@@ -44,10 +47,11 @@ export default function Signup() {
   const [interests, setInterests] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
   const passwordValid = validatePassword(password);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await fetch("/api/auth/signup", {
       method: "POST",
@@ -56,10 +60,13 @@ export default function Signup() {
     });
     const data = await res.json();
     if (data.success) {
-      alert("Signup successful!");
-      // Optionally redirect to login
+      if (data.user) {
+        saveSession(data.user as SessionUser);
+      }
+      setStatusMessage("Signup successful—welcome!");
+      router.push("/account");
     } else {
-      alert(data.error || "Signup failed");
+      setStatusMessage(data.error || "Signup failed");
     }
   };
 
@@ -185,10 +192,13 @@ export default function Signup() {
             </label>
             <button
               type="submit"
-              className="mt-4 w-full py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+              className="mt-4 w-full py-2 rounded-md bg-red-900 text-white font-semibold hover:bg-red-850 transition"
             >
               Sign Up
             </button>
+            {statusMessage && (
+              <p className="text-sm text-center text-gray-600">{statusMessage}</p>
+            )}
           </form>
           <p className="mt-4 text-center text-sm text-gray-500">
             Already have an account?{" "}
