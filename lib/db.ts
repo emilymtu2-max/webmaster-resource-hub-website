@@ -20,6 +20,19 @@ db.exec(`
   );
 `);
 
+db.exec(`
+  CREATE TABLE IF NOT EXISTS suggestions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    phone TEXT,
+    email TEXT NOT NULL,
+    where_found TEXT,
+    source_link TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+`);
+
 type UserRow = {
   id: number;
   email: string;
@@ -38,6 +51,10 @@ const findUserByEmailStmt = db.prepare<UserRow>(
 );
 
 export type StoredUser = UserRow;
+
+export function getDb() {
+  return db;
+}
 
 export function createUser(input: {
   email: string;
