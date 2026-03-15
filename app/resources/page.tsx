@@ -1,8 +1,21 @@
 "use client"
-import React, { useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
+import { HeartIcon } from "@/components/icons/HeartIcon"
 
-const resources = [
+interface Resource {
+  title: string
+  category: string
+  about: string
+  does: string
+  contact: string
+  link: string
+}
+
+const FAVORITES_STORAGE_KEY = "pulseasia_resource_favorites"
+const FAVORITE_CATEGORY_LABEL = "Liked"
+
+const resources: Resource[] = [
 
 {
 title: "Immigration Advocates Network Legal Services Directory",
@@ -436,19 +449,62 @@ link: "https://www.kwacares.org/",
 
 ]
 
+
 export default function ResourcesPage() {
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState("All")
+  const [favorites, setFavorites] = useState<string[]>([])
 
-  const categories = ["All", ...new Set(resources.map((r) => r.category))]
+  const derivedCategories = Array.from(new Set(resources.map((r) => r.category)))
+  const categories = [FAVORITE_CATEGORY_LABEL, "All", ...derivedCategories]
+
+  const favoriteSet = useMemo(() => new Set(favorites), [favorites])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const stored = window.localStorage.getItem(FAVORITES_STORAGE_KEY)
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored)
+        if (Array.isArray(parsed)) {
+          setFavorites(parsed)
+        }
+      } catch {
+        // ignore invalid data
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    window.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites))
+  }, [favorites])
+
+  const toggleFavorite = (title: string) => {
+    setFavorites((prev) =>
+      prev.includes(title) ? prev.filter((fav) => fav !== title) : [...prev, title]
+    )
+  }
+
+  const searchTerm = search.trim().toLowerCase()
 
   const filteredResources = resources.filter((r) => {
-    const matchesCategory =
-      activeCategory === "All" || r.category === activeCategory
     const matchesSearch =
-      r.title.toLowerCase().includes(search.toLowerCase()) ||
-      r.about.toLowerCase().includes(search.toLowerCase())
-    return matchesCategory && matchesSearch
+      !searchTerm ||
+      r.title.toLowerCase().includes(searchTerm) ||
+      r.about.toLowerCase().includes(searchTerm)
+
+    if (!matchesSearch) return false
+
+    if (activeCategory === "All") {
+      return true
+    }
+
+    if (activeCategory === FAVORITE_CATEGORY_LABEL) {
+      return favoriteSet.has(r.title)
+    }
+
+    return r.category === activeCategory
   })
   
 
@@ -503,6 +559,7 @@ export default function ResourcesPage() {
       </div>
     </div>
       
+      
 
       {/* CATEGORY FILTERS */}
       <div className="resource-filters col-span-full flex justify-center flex-wrap gap-2 p-4">
@@ -521,8 +578,26 @@ export default function ResourcesPage() {
         ))}
       </div>
 
-        {filteredResources.map((r) => (
-          <div key={r.title} className="card shadow-xl p-5 rounded-lg text-white bg-[#6A0909]/90 backdrop-blur-sm">
+        {filteredResources.map((r) => {
+          const isFavorited = favoriteSet.has(r.title)
+          return (
+          <div key={r.title} className="card relative shadow-xl p-5 rounded-lg text-white bg-[#6A0909]/90 backdrop-blur-sm">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+                {r.category}
+              </span>
+              <button
+                type="button"
+                onClick={() => toggleFavorite(r.title)}
+                aria-pressed={isFavorited}
+                aria-label={`${isFavorited ? "Unsave" : "Save"} ${r.title}`}
+                className={`ml-auto rounded-full p-2 transition focus-visible:ring focus-visible:ring-white/70 ${
+                  isFavorited ? "bg-white/10 text-pink-300" : "bg-white/10 text-white/70 hover:text-white"
+                }`}
+              >
+                <HeartIcon className="h-5 w-5" />
+              </button>
+            </div>
             <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
 
             <div className="resource-section mb-2">
@@ -548,7 +623,8 @@ export default function ResourcesPage() {
               VIEW RESOURCE →
             </Link>
           </div>
-        ))}
+          )
+        })}
         {filteredResources.length === 0 && (
           <p className="text-center text-gray-500">No resources found.</p>
         )}
