@@ -278,18 +278,6 @@ does:
 contact: "(206) 654-3100",
 link: "https://www.seattleartmuseum.org/",
 },
-
-{
-  title: "Seattle Center Festál Cultural Festivals",
-  category: "Culture",
-  about:
-    "Seattle Center partners with cultural organizations across the region to celebrate global cultures through the Festál cultural festival series.",
-  does:
-    "Hosts more than 25 free cultural festivals each year featuring music, dance, art, film, and food representing cultures from around the world.",
-  contact: "Seattle Center",
-  link: "https://seattlecenter.com/events/featured-events/festal",
-},
-
 {
 title: "Friends of Little Saigon Small Business Fair",
 category: "Career",
