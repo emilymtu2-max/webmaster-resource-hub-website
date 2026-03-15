@@ -16,12 +16,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-
-const navLinks = [
-  { href: "/about", label: "About Us" },
-  { href: "/resources", label: "Resource Hub" },
-  { href: "/references", label: "References" },
-];
+import { navLinks } from "@/lib/nav-links";
 
 const groupedNavLinks = [
   {
