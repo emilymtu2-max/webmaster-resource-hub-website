@@ -109,18 +109,18 @@ export default function Signup() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-[#f4ece1] text-gray-900">
       {/* Header */}
-      <header className="w-full py-6 flex justify-center items-center bg-[var(--background)] border-b border-gray-200">
+      <header className="w-full py-6 flex justify-center items-center bg-transparent border-b border-gray-200">
         <div className="flex items-center gap-3">
-          <span className="text-2xl font-bold text-[var(--foreground)]">PulseAsia</span>
+          <span className="text-2xl font-bold text-gray-900">PulseAsia</span>
         </div>
       </header>
 
       {/* Signup Form */}
-      <main className="flex flex-col items-center justify-center min-h-[60vh] bg-[var(--background)]">
+      <main className="flex flex-col items-center justify-center min-h-[60vh] bg-transparent">
         <div className="w-full max-w-md bg-white/80 dark:bg-black/60 rounded-xl shadow-lg p-8 mt-12 border border-gray-100 dark:border-gray-800">
-          <h2 className="text-2xl font-semibold text-center mb-6 text-[var(--foreground)]">Sign Up</h2>
+          <h2 className="text-2xl font-semibold text-center mb-6 text-gray-900">Sign Up</h2>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="grid gap-4">
               <label className="flex flex-col gap-1 text-sm font-semibold text-gray-700">
@@ -230,11 +230,11 @@ export default function Signup() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full py-4 flex justify-center items-center bg-[var(--background)] border-t border-gray-200 mt-12">
+      <footer className="w-full py-4 flex justify-center items-center bg-transparent border-t border-gray-200 mt-12">
         <span className="text-sm text-gray-500">
           &copy; {new Date().getFullYear()} PulseAsia. All rights reserved.
         </span>
       </footer>
-    </>
+    </div>
   );
 }

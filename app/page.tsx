@@ -354,6 +354,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
     </>
   );
 }
