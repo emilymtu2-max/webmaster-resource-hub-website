@@ -48,6 +48,22 @@ export default function Signup() {
 
   const passwordValid = validatePassword(password);
 
+    const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, firstName, country, interests }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert("Signup successful!");
+      // Optionally redirect to login
+    } else {
+      alert(data.error || "Signup failed");
+    }
+  };
+
   return (
     <>
       {/* Header */}
@@ -61,7 +77,7 @@ export default function Signup() {
       <main className="flex flex-col items-center justify-center min-h-[60vh] bg-[var(--background)]">
         <div className="w-full max-w-md bg-white/80 dark:bg-black/60 rounded-xl shadow-lg p-8 mt-12 border border-gray-100 dark:border-gray-800">
           <h2 className="text-2xl font-semibold text-center mb-6 text-[var(--foreground)]">Sign Up</h2>
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <label className="text-[var(--foreground)] font-medium">
               Email
               <input

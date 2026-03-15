@@ -170,16 +170,6 @@ contact: "(206) 722-9200",
 link: "https://www.filcommsea.org/youth-development",
 },
 
-{
-title: "Seattle Center Festál Cultural Festivals",
-category: "Culture",
-about:
-"Festál partners with Seattle Center to host free cultural festivals celebrating global communities.",
-does:
-"Hosts over 25 cultural festivals featuring music, dance, art, and food from cultures around the world.",
-contact: "Seattle Center",
-link: "https://seattlecenter.com/events/featured-events/festal",
-},
 
 {
 title: "Seattle Japanese Garden",
@@ -279,6 +269,18 @@ does:
 contact: "(206) 654-3100",
 link: "https://www.seattleartmuseum.org/",
 },
+
+{
+  title: "Seattle Center Festál Cultural Festivals",
+  category: "Culture",
+  about:
+    "Seattle Center partners with cultural organizations across the region to celebrate global cultures through the Festál cultural festival series.",
+  does:
+    "Hosts more than 25 free cultural festivals each year featuring music, dance, art, film, and food representing cultures from around the world.",
+  contact: "Seattle Center",
+  link: "https://seattlecenter.com/events/featured-events/festal",
+},
+
 {
 title: "Friends of Little Saigon Small Business Fair",
 category: "Career",
@@ -354,17 +356,6 @@ does:
 "Provides business classes, coaching, and micro-lending opportunities.",
 contact: "(206) 352-1750",
 link: "https://www.venturesnonprofit.org/",
-},
-
-{
-title: "Seattle Chinatown International District Development Authority",
-category: "Career",
-about:
-"A community development organization supporting Seattle's Chinatown-International District.",
-does:
-"Provides housing programs, economic development initiatives, and small business support.",
-contact: "(206) 624-8977",
-link: "https://scidpda.org/",
 },
 
 {
@@ -499,7 +490,7 @@ export default function ResourcesPage() {
       </div>
 
       {/* RESOURCE CARDS */}
-      <div className="resources-container p-4 flex-1 overflow-y-auto space-y-4 max-h-[600px]">
+      <div className="resources-container p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 overflow-y-auto max-h-[600px]">
         {filteredResources.map((r) => (
           <div key={r.title} className="card shadow-lg p-4 bg-white rounded">
             <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
