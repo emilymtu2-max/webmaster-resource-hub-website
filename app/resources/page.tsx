@@ -489,7 +489,7 @@ export default function ResourcesPage() {
       </div>
 
       {/* RESOURCE CARDS */}
-      <div className="resources-container p-4 flex-1 overflow-y-auto space-y-4 max-h-[600px]">
+      <div className="resources-container p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 overflow-y-auto max-h-[600px]">
         {filteredResources.map((r) => (
           <div key={r.title} className="card shadow-lg p-4 bg-white rounded">
             <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
