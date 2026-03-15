@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 
 import FooterCta from "@/components/FooterCta";
+import { navLinks } from "@/lib/nav-links";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 

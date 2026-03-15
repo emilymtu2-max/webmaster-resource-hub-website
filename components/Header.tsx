@@ -4,15 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { readSession, onSessionUpdate, SessionUser } from "@/lib/session";
 import { capitalizeFirstLetter } from "@/lib/text";
-
-const navLinks = [
-  { href: "/about", label: "About Us" },
-  { href: "/resources", label: "Resource Hub" },
-  { href: "/map", label: "Interactive Map" },
-  { href: "/form-suggestions-page", label: "Suggestions" },
-  { href: "/references", label: "References" },
-  { href: "/stat", label: "Immigration Stats" },
-];
+import { navLinks } from "@/lib/nav-links";
 
 export default function Header() {
   const [user, setUser] = useState<SessionUser | null>(null);
