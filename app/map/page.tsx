@@ -46,6 +46,7 @@ const locations = [
     lat: 47.5973,
     lng: -122.3135,
   },
+  
 ];
 
 export default function MapPage() {
