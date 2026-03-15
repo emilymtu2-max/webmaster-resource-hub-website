@@ -12,11 +12,17 @@ interface FormState {
   sourceLink: string;
 }
 
+const initialFormState: FormState = {
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+  whereFound: '',
+  sourceLink: '',
+};
+
 export default function SuggestionsFormPage() {
-  const [form, setForm] = useState<FormState>({
-    firstName: '', lastName: '', phone: '', email: '',
-    whereFound: '', sourceLink: '',
-  });
+  const [form, setForm] = useState<FormState>(initialFormState);
   const [status, setStatus] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -34,7 +40,7 @@ export default function SuggestionsFormPage() {
 
       if (res.ok) {
         setStatus('success');
-        setForm({ firstName: '', lastName: '', phone: '', email: '', whereFound: '', sourceLink: '' });
+        setForm(initialFormState);
       } else {
         const data = await res.json();
         setStatus(data.error || 'error');
@@ -47,27 +53,25 @@ export default function SuggestionsFormPage() {
   return (
     <main className="min-h-screen bg-[#FDF6EC] py-12 px-6">
       <div className="max-w-3xl mx-auto">
-
         {/* Breadcrumb */}
         <div className="breadcrumbs text-[#8B1A1A] text-sm mb-6 opacity-70">
           <ul>
             <li>Home</li>
             <li>Resource Hub</li>
-            <li><strong>Suggest More Resources</strong></li>
+            <li>
+              <strong>Suggest More Resources</strong>
+            </li>
           </ul>
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl font-bold text-[#6B0000] leading-tight mb-4">
-          Suggest More Resources
-        </h1>
+        <h1 className="text-5xl font-bold text-[#6B0000] leading-tight mb-4">Suggest More Resources</h1>
         <p className="text-[#6B0000] text-base mb-10 max-w-xl opacity-80">
           Do you have any resources or organizations that you'd like us to add to our resource hub? Fill out the form below!
         </p>
 
         {/* Form Card */}
         <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col gap-5">
-
           {/* Row 1 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
@@ -136,11 +140,14 @@ export default function SuggestionsFormPage() {
             </div>
           )}
 
-          <button className="cta-button mt-2 w-fit" onClick={handleSubmit}>
+          <button
+            type="button"
+            className="cta-button mt-2 w-fit"
+            onClick={handleSubmit}
+          >
             Submit Form
-            <ArrowRightIcon />
+            <ArrowRightIcon className="h-5 w-5" />
           </button>
-
         </div>
       </div>
     </main>

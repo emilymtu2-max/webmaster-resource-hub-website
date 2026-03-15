@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react"
 import Link from "next/link"
-import { ArrowRightIcon } from "lucide-react"
 
 const resources = [
 
@@ -451,6 +450,7 @@ export default function ResourcesPage() {
       r.about.toLowerCase().includes(search.toLowerCase())
     return matchesCategory && matchesSearch
   })
+  
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -463,36 +463,66 @@ export default function ResourcesPage() {
         </p>
       </section>
 
-      {/* SEARCH BAR */}
-      <div className="resources-search p-4 flex justify-center">
+      
+
+      {/* RESOURCE CARDS */}
+      <div
+           className="resources-container p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.pexels.com/photos/6983438/pexels-photo-6983438.jpeg')",
+            }}
+          >
+
+    {/* SEARCH BAR */}
+    <div className="resources-search col-span-full p-4 flex justify-center">
+      <div className="flex items-center border rounded-full px-4 py-2 w-full max-w-md bg-white shadow-sm">
+        
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-5 h-5 text-gray-500 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+
         <input
           type="text"
           placeholder="Search resources..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="search-input border rounded p-2 w-full max-w-md"
+          className="w-full outline-none"
         />
       </div>
+    </div>
+      
 
       {/* CATEGORY FILTERS */}
-      <div className="resource-filters flex justify-center space-x-2 p-4">
+      <div className="resource-filters col-span-full flex justify-center flex-wrap gap-2 p-4">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`filter-btn px-3 py-1 rounded border ${
-              activeCategory === cat ? "bg-blue-500 text-white" : "bg-white"
-            }`}
+            className={`px-4 py-2 rounded-full border transition-colors duration-200 ${
+                activeCategory === cat
+                  ? "bg-[#ffc15e] text-black border-[#ffc15e]"
+                  : "bg-white text-black border-gray-300 hover:bg-[#ffc15e]/40"
+              }`}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* RESOURCE CARDS */}
-      <div className="resources-container p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 overflow-y-auto max-h-[600px]">
         {filteredResources.map((r) => (
-          <div key={r.title} className="card shadow-lg p-4 bg-white rounded">
+          <div key={r.title} className="card shadow-xl p-5 rounded-lg text-white bg-[#6A0909]/90 backdrop-blur-sm">
             <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
 
             <div className="resource-section mb-2">
@@ -510,9 +540,12 @@ export default function ResourcesPage() {
               <p>{r.contact}</p>
             </div>
 
-            <Link href={r.link} target="_blank" className="cta-button mt-2">
-              VIEW RESOURCE
-              <ArrowRightIcon />
+            <Link
+              href={r.link}
+              target="_blank"
+              className="btn btn-primary mt-2"
+            >
+              VIEW RESOURCE →
             </Link>
           </div>
         ))}

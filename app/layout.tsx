@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 
 import FooterCta from "@/components/FooterCta";
-import HeaderNav from "@/components/HeaderNav";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 
@@ -17,10 +16,71 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const navLinks = [
+    { href: "/about", label: "About Us" },
+    { href: "/resources", label: "Resource Hub" },
+    { href: "/map", label: "Interactive Map" },
+    { href: "/form-suggestions-page", label: "Suggestions" },
+    { href: "/references", label: "References" },
+    { href: "/stat", label: "Immigration Stats" },
+  ];
+
   return (
     <html lang="en" data-theme="caramellatte">
       <body className="bg-base-100 text-base-content antialiased">
-        <HeaderNav />
+        {/* Navbar */}
+        <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
+          <div className="flex-1">
+            <Link href="/" className="btn btn-ghost text-xl text-red-900">
+              PulseAsia
+            </Link>
+          </div>
+          <div className="flex-none">
+            <ul className="menu menu-horizontal px-1 hidden md:flex">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-red-900">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="dropdown dropdown-end md:hidden">
+              <button
+                tabIndex={0}
+                className="btn btn-square btn-ghost text-red-900"
+                aria-label="Open navigation"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block h-5 w-5 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                  />
+                </svg>
+              </button>
+              <ul
+                tabIndex={0}
+                className="menu dropdown-content z-10 mt-3 w-56 rounded-box bg-base-100 p-2 shadow"
+              >
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-red-900">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {/* Main page content */}
         <main>{children}</main>
         <FooterCta />
 

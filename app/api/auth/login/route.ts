@@ -21,7 +21,17 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json(
-    { success: true, user: { id: user.id, email: user.email, firstName: user.firstName } },
+    {
+      success: true,
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        country: user.country,
+        interests: user.interests,
+        profileImage: user.profileImage,
+      },
+    },
     { status: 200 }
   );
 }
