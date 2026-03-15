@@ -224,6 +224,23 @@ export default function StatisticsPage() {
               </ResponsiveContainer>
             </div>
           </div>
+          
+            <div className="text-left">
+            <h2 className="text-4xl font-bold mb-2">
+              Information obtained from:
+            </h2>
+            <p className="text-lg">
+              - Pew Research: https://www.pewresearch.org/race-and-ethnicity/2024/10/09/asian-american-immigrants-experiences-adjusting-to-life-in-the-u-s/
+              
+            </p>
+            <p className="text-lg">
+               - Migration Policy Institute: https://www.migrationpolicy.org/article/immigrants-asia-united-states-2025
+              
+            </p>
+
+                     
+          </div>
+
 
         </div>
       </div>
