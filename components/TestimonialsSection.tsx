@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
+
 import {
   Card,
   CardAction,
@@ -98,12 +101,10 @@ function CarouselDemo() {
                   <p className="text-sm leading-relaxed text-red-900/65 md:text-base">
                     {card.person} used {card.resourceCategory}. Check them out.
                   </p>
-                  <a
-                    href="/resources"
-                    className="btn border-red-900/20 bg-red-900 text-white hover:bg-red-800"
-                  >
+                  <Link href="/resources" className="cta-button">
                     Visit Resource Hub
-                  </a>
+                    <ArrowRightIcon />
+                  </Link>
                 </CardFooter>
               </Card>
             </div>

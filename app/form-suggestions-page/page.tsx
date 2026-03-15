@@ -1,7 +1,7 @@
 'use client';
-import { useRouter } from "next/navigation";
+
 import { useState, ChangeEvent } from 'react';
-import React from 'react';
+import { ArrowRightIcon } from "lucide-react";
 
 interface FormState {
   firstName: string;
@@ -12,164 +12,144 @@ interface FormState {
   sourceLink: string;
 }
 
+const initialFormState: FormState = {
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+  whereFound: '',
+  sourceLink: '',
+};
+
 export default function SuggestionsFormPage() {
-  const router = useRouter();
-  const [form, setForm] = useState<FormState>({
-    firstName: '', lastName: '', phone: '', email: '',
-    whereFound: '', sourceLink: '',
-  });
+  const [form, setForm] = useState<FormState>(initialFormState);
   const [status, setStatus] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async () => {
-  setStatus(null);
+  const handleSubmit = async () => {
+    setStatus(null);
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
 
-  try {
-    const res = await fetch('/api/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
-    });
-
-    if (res.ok) {
-      router.push("/form");   // goes to your thank you page
-    } else {
-      setStatus("Submission failed.");
+      if (res.ok) {
+        setStatus('success');
+        setForm(initialFormState);
+      } else {
+        const data = await res.json();
+        setStatus(data.error || 'error');
+      }
+    } catch {
+      setStatus('Something went wrong. Please try again.');
     }
-
-  } catch {
-    setStatus('Something went wrong. Please try again.');
-  }
-};
+  };
 
   return (
-    <main style={styles.page}>
-      <div style={styles.container}>
-        <nav style={styles.breadcrumb}>
-          Home / Resource Hub / <strong>Suggest More Resources</strong>
-        </nav>
+    <main className="min-h-screen bg-[#FDF6EC] py-12 px-6">
+      <div className="max-w-3xl mx-auto">
+        {/* Breadcrumb */}
+        <div className="breadcrumbs text-[#8B1A1A] text-sm mb-6 opacity-70">
+          <ul>
+            <li>Home</li>
+            <li>Resource Hub</li>
+            <li>
+              <strong>Suggest More Resources</strong>
+            </li>
+          </ul>
+        </div>
 
-        <h1 style={styles.title}>Suggest More<br />Resources</h1>
-        <p style={styles.subtitle}>
-          Do you have any resources/organizations that you'd like us to put on our resource hub?
+        {/* Title */}
+        <h1 className="text-5xl font-bold text-[#6B0000] leading-tight mb-4">Suggest More Resources</h1>
+        <p className="text-[#6B0000] text-base mb-10 max-w-xl opacity-80">
+          Do you have any resources or organizations that you'd like us to add to our resource hub? Fill out the form below!
         </p>
 
-        <div style={styles.form}>
-          <div style={styles.row}>
-            <input style={styles.input} name="firstName" placeholder="First Name"
-              value={form.firstName} onChange={handleChange} />
-            <input style={styles.input} name="lastName" placeholder="Last Name"
-              value={form.lastName} onChange={handleChange} />
+        {/* Form Card */}
+        <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col gap-5">
+          {/* Row 1 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              name="firstName"
+              placeholder="First Name"
+              className="input border border-[#e0c9b0] bg-[#FDF6EC] text-[#6B0000] placeholder-[#b08060] rounded-xl w-full focus:outline-none focus:border-[#8B1A1A]"
+              value={form.firstName}
+              onChange={handleChange}
+            />
+            <input
+              name="lastName"
+              placeholder="Last Name"
+              className="input border border-[#e0c9b0] bg-[#FDF6EC] text-[#6B0000] placeholder-[#b08060] rounded-xl w-full focus:outline-none focus:border-[#8B1A1A]"
+              value={form.lastName}
+              onChange={handleChange}
+            />
           </div>
 
-          <div style={styles.row}>
-            <input style={styles.input} name="phone" placeholder="Phone Number"
-              value={form.phone} onChange={handleChange} />
-            <input style={styles.input} name="email" placeholder="Email Address"
-              value={form.email} onChange={handleChange} />
+          {/* Row 2 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              name="phone"
+              placeholder="Phone Number"
+              className="input border border-[#e0c9b0] bg-[#FDF6EC] text-[#6B0000] placeholder-[#b08060] rounded-xl w-full focus:outline-none focus:border-[#8B1A1A]"
+              value={form.phone}
+              onChange={handleChange}
+            />
+            <input
+              name="email"
+              placeholder="Email Address"
+              className="input border border-[#e0c9b0] bg-[#FDF6EC] text-[#6B0000] placeholder-[#b08060] rounded-xl w-full focus:outline-none focus:border-[#8B1A1A]"
+              value={form.email}
+              onChange={handleChange}
+            />
           </div>
 
-          <textarea style={styles.textarea} name="whereFound"
+          {/* Where found */}
+          <textarea
+            name="whereFound"
             placeholder="Where did you find the resource?"
-            value={form.whereFound} onChange={handleChange} rows={3} />
+            className="textarea border border-[#e0c9b0] bg-[#FDF6EC] text-[#6B0000] placeholder-[#b08060] rounded-xl w-full focus:outline-none focus:border-[#8B1A1A] resize-none"
+            value={form.whereFound}
+            onChange={handleChange}
+            rows={3}
+          />
 
-          <textarea style={styles.textarea} name="sourceLink"
+          {/* Source link */}
+          <textarea
+            name="sourceLink"
             placeholder="Paste source's link here~ If not available, describe the source (through book title, store address, etc.)"
-            value={form.sourceLink} onChange={handleChange} rows={3} />
+            className="textarea border border-[#e0c9b0] bg-[#FDF6EC] text-[#6B0000] placeholder-[#b08060] rounded-xl w-full focus:outline-none focus:border-[#8B1A1A] resize-none"
+            value={form.sourceLink}
+            onChange={handleChange}
+            rows={3}
+          />
 
+          {/* Status messages */}
           {status === 'success' && (
-            <p style={styles.successMsg}>✓ Your suggestion has been submitted!</p>
+            <div className="alert bg-green-50 border border-green-300 text-green-700 rounded-xl">
+              <span>✓ Your suggestion has been submitted successfully!</span>
+            </div>
           )}
           {status && status !== 'success' && (
-            <p style={styles.errorMsg}>✗ {status}</p>
+            <div className="alert bg-red-50 border border-red-300 text-red-700 rounded-xl">
+              <span>✗ {status}</span>
+            </div>
           )}
 
-          <button style={styles.button} onClick={handleSubmit}>
+          <button
+            type="button"
+            className="cta-button mt-2 w-fit"
+            onClick={handleSubmit}
+          >
             Submit Form
+            <ArrowRightIcon className="h-5 w-5" />
           </button>
         </div>
       </div>
     </main>
   );
 }
-
-const styles: { [key: string]: React.CSSProperties } = {
-  page: {
-    backgroundColor: '#6B0000',
-    padding: '40px 0',
-    minHeight: '60vh',
-  },
-  container: {
-    maxWidth: '860px',
-    margin: '0 auto',
-    padding: '0 24px',
-  },
-  breadcrumb: {
-    color: '#F5C842',
-    fontSize: '14px',
-    marginBottom: '20px',
-  },
-  title: {
-    fontSize: '52px',
-    fontWeight: 'bold',
-    color: '#F5C842',
-    lineHeight: 1.1,
-    marginBottom: '16px',
-  },
-  subtitle: {
-    fontSize: '16px',
-    color: '#fff',
-    marginBottom: '36px',
-    maxWidth: '540px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  },
-  row: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '16px',
-  },
-  input: {
-    backgroundColor: '#8B1A1A',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '18px 16px',
-    color: '#fff',
-    fontSize: '15px',
-    outline: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  textarea: {
-    backgroundColor: '#8B1A1A',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '18px 16px',
-    color: '#fff',
-    fontSize: '15px',
-    outline: 'none',
-    resize: 'vertical',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  button: {
-    backgroundColor: '#F5C842',
-    color: '#3D0000',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '16px 40px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    alignSelf: 'flex-start',
-    marginTop: '8px',
-  },
-  successMsg: { color: '#90EE90', fontWeight: 'bold' },
-  errorMsg: { color: '#FF6B6B', fontWeight: 'bold' },
-};

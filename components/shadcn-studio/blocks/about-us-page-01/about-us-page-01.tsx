@@ -3,7 +3,6 @@ import type { ComponentType } from "react";
 import { ArrowRightIcon } from "lucide-react";
 
 import FlipWords from "@/components/ui/flip-words";
-import { Button } from "@/components/ui/button";
 
 type StatItem = {
   icon: ComponentType;
@@ -25,7 +24,6 @@ const AboutUs = ({ stats }: { stats: StatItem }) => {
                   "Family",
                   "Home",
                   "Safe Place",
-                  "You and Me",
                 ]}
                 className="text-amber-100"
                 duration={2600}
@@ -38,16 +36,10 @@ const AboutUs = ({ stats }: { stats: StatItem }) => {
             a small support network has grown into a hub for resources, cultural
             connection, and belonging.
           </p>
-          <Button
-            size="lg"
-            asChild
-            className="group rounded-lg bg-red-900 text-base text-white has-[>svg]:px-6 hover:bg-red-800"
-          >
-            <a href="#our-story">
-              Read more
-              <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </a>
-          </Button>
+          <a href="#our-story" className="cta-button">
+            Read more
+            <ArrowRightIcon />
+          </a>
         </div>
 
         <div className="relative mb-8 h-full w-full max-lg:space-y-6 sm:mb-16 lg:mb-24">

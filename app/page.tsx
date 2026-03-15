@@ -1,4 +1,7 @@
 // app/page.tsx
+import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
+
 import {
   Card,
   CardAction,
@@ -168,9 +171,10 @@ export default function Home() {
         <div className="hero-content w-full px-6 text-center text-neutral-content md:px-10">
           <div className="mx-auto flex min-h-[22rem] w-full max-w-7xl flex-col items-center justify-center">
             <TypingHeroHeadline />
-            <a href="/resources" className="btn btn-primary text-lg md:text-xl">
+            <Link href="/resources" className="cta-button">
               Explore Resources
-            </a>
+              <ArrowRightIcon />
+            </Link>
           </div>
         </div>
       </div>
@@ -218,9 +222,10 @@ export default function Home() {
                 out. From cultural hubs to local resources, find what&apos;s close to
                 home. Explore the map and start discovering.
               </p>
-              <a href="/map" className="btn btn-primary text-lg md:text-xl">
+              <Link href="/map" className="cta-button">
                 Explore the Map
-              </a>
+                <ArrowRightIcon />
+              </Link>
             </div>
           </div>
         </div>
@@ -234,7 +239,7 @@ export default function Home() {
             title="Why Pulse Asia Exists"
             description="Too many people arrive in a new country full of hope, only to find themselves lost in language barriers, tangled in visa confusion, and quietly struggling with isolation they never expected. The cultural disconnect is real, and it is heavy.
             Pulse Asia exists to change that. We are here to make sure no one in the Asian community has to figure it out alone."
-            buttonLabel="Share Now"
+            buttonLabel="Learn More"
             buttonHref="/stat"
             imageClassName="h-[30rem] w-auto max-w-none md:h-[36rem] lg:ml-[-8rem] lg:h-[52rem] lg:scale-110"
           />
@@ -360,9 +365,10 @@ export default function Home() {
                     </p>
                   </CardContent>
                   <CardFooter className="pb-6 pt-0">
-                    <a href={card.href} className="btn btn-primary w-full">
+                    <Link href={card.href} className="cta-button cta-button-full">
                       Explore
-                    </a>
+                      <ArrowRightIcon />
+                    </Link>
                   </CardFooter>
                 </Card>
               ))}
@@ -378,7 +384,7 @@ export default function Home() {
           backgroundImage: "url(/indiabeauty.jpg)",
         }}
       >
-        <div className="hero-overlay bg-red-950/65"></div>
+        <div className="hero-overlay bg-slate-950/45"></div>
         <div className="hero-content w-full max-w-none px-4 py-16 text-neutral-content md:px-8 lg:px-10">
           <div className="w-full max-w-[92rem]">
             <h2 className="max-w-5xl text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
@@ -395,12 +401,10 @@ export default function Home() {
               Help us connect our community by adding programs, events, or services
               you know about.
             </p>
-            <a
-              href="/form-suggestions-page"
-              className="btn mt-8 border-red-900 bg-red-900 text-white hover:border-red-800 hover:bg-red-800"
-            >
+            <Link href="/form-suggestions-page" className="cta-button mt-8">
               Share Now
-            </a>
+              <ArrowRightIcon />
+            </Link>
           </div>
         </div>
       </section>
@@ -451,12 +455,6 @@ export default function Home() {
         </div>
       </section>
 
-      <a
-        href="/login"
-        className="inline-block mt-2 rounded-md bg-blue-500 px-4 py-2 font-semibold text-white transition hover:bg-blue-600"
-      >
-        Go to Login Page (Temporary)
-      </a>
     </>
   );
 }
