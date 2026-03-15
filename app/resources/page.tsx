@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
-<<<<<<< HEAD
 const topResources = [
   {
     rank: "01",
@@ -40,7 +39,6 @@ const topResources = [
     imageSrc: "/aboutus-culture.jpg",
   },
 ];
-=======
 // Simple HeartIcon component (inline SVG)
 const HeartIcon = ({ className = "" }: { className?: string }) => (
   <svg
@@ -66,7 +64,6 @@ interface Resource {
   contact: string
   link: string
 }
->>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
 
 const resources = [
   {
@@ -467,7 +464,6 @@ export default function ResourcesPage() {
     <div className="min-h-screen flex flex-col">
 
       {/* PAGE TITLE */}
-<<<<<<< HEAD
        <section className="py-32">
         <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
           <div className="mx-auto max-w-[92rem]">
@@ -597,7 +593,6 @@ export default function ResourcesPage() {
       
 
       {/* RESOURCE CARDS */}
-=======
       <section
         className="resources-hero p-6 text-center"
         style={{ backgroundColor: "#debe8a" }}
@@ -609,7 +604,6 @@ export default function ResourcesPage() {
       </section>
 
       {/* SEARCH + FILTERS BACKGROUND */}
->>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
       <div
         className="flex flex-col items-center justify-center p-8 gap-4"
         style={{
@@ -691,8 +685,6 @@ export default function ResourcesPage() {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-=======
 
       <div className="flex-1 bg-black">
 
@@ -749,7 +741,6 @@ export default function ResourcesPage() {
         </div>
       </div>
     </div>
->>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
     </div>
   )
 }
