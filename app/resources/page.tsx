@@ -494,6 +494,36 @@ export default function ResourcesPage() {
     <div className="min-h-screen flex flex-col">
 
       {/* PAGE TITLE */}
+       <section className="py-32">
+        <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
+          <div className="mx-auto max-w-[92rem]">
+            <div className="grid w-full grid-cols-[1fr_minmax(0,44rem)_1fr] items-center gap-6">
+              <div className="flex justify-center lg:justify-start">
+                <img
+                  src="/doodlered.png"
+                  alt="Red doodle accent"
+                  className="h-28 w-auto object-contain md:h-36"
+                />
+              </div>
+              <div className="mx-auto w-full text-center">
+                <h2 className="text-balance text-5xl font-bold md:text-6xl">
+                  Highlighted Resources
+                </h2>
+                <p className="mx-auto mt-6 max-w-3xl text-balance text-xl text-base-content/70 md:text-2xl">
+                  From our large database of resources, here are some of the most popular and impactful organizations that our community has found helpful. Explore these highlighted resources to find support, education, and connection.
+                </p>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <img
+                  src="/yellowStarish.png"
+                  alt="Yellow doodle accent"
+                  className="h-32 w-auto object-contain md:h-40"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="pb-8">
         <div className="mx-auto w-full max-w-[92rem] px-4 md:px-8 lg:px-10">
@@ -680,12 +710,6 @@ export default function ResourcesPage() {
           <p className="text-center text-gray-500">No resources found.</p>
         )}
       </div>
-
-      {/* FOOTER */}
-      <footer className="site-footer bg-gray-100 p-4 text-center mt-4">
-        <p>© 2026 PulseAsia</p>
-        <p>Empowering communities through education, access to resources, and cultural awareness.</p>
-      </footer>
     </div>
   )
 }
