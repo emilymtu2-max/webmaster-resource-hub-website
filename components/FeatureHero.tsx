@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ArrowRightIcon } from "lucide-react";
 
 type FeatureHeroProps = {
   imageSrc: string;
@@ -28,8 +29,9 @@ export default function FeatureHero({
         <div className="w-full max-w-6xl space-y-4">
           <h2 className="text-6xl font-bold md:text-7xl xl:text-[6rem]">{title}</h2>
           <p className="text-xl leading-relaxed md:text-2xl">{description}</p>
-          <Link href={buttonHref} className="btn btn-primary text-lg md:text-xl">
+          <Link href={buttonHref} className="cta-button">
             {buttonLabel}
+            <ArrowRightIcon />
           </Link>
         </div>
         {visual ? (

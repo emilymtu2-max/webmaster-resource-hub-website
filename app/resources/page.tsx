@@ -1,18 +1,6 @@
-"use client";
-
-import React, { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-
-const STORAGE_KEY = "pulseasia_resources_liked";
-
-type Resource = {
-  title: string;
-  category: string;
-  about: string;
-  does: string;
-  contact: string;
-  link: string;
-};
+"use client"
+import React, { useState } from "react"
+import Link from "next/link"
 
 const resources: Resource[] = [
   {
@@ -506,72 +494,11 @@ export default function ResourcesPage() {
         ))}
       </div>
 
-      <div className="resource-actions flex flex-wrap items-center justify-between gap-3 px-4 py-2 border-y border-gray-100 bg-white">
-        <p className="text-sm text-gray-600">
-          Tap the heart to save favorites, then use the toggles to surface what matters most.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setShowLikedOnly((prev) => !prev)}
-            className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-              showLikedOnly
-                ? "border-rose-500 bg-rose-50 text-rose-700"
-                : "border-gray-200 bg-white text-gray-700 hover:border-rose-500"
-            }`}
-          >
-            {showLikedOnly ? "Showing liked only" : "Filter liked"}
-          </button>
-          <button
-            type="button"
-            onClick={() => setSortByLiked((prev) => !prev)}
-            className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-              sortByLiked
-                ? "border-blue-500 bg-blue-50 text-blue-700"
-                : "border-gray-200 bg-white text-gray-700 hover:border-blue-500"
-            }`}
-          >
-            {sortByLiked ? "Liked first" : "Sort liked first"}
-          </button>
-        </div>
-      </div>
-
+      {/* RESOURCE CARDS */}
       <div className="resources-container p-4 flex-1 overflow-y-auto space-y-4 max-h-[600px]">
-        {resourcesToRender.map((resource) => {
-          const liked = likedSet.has(resource.title);
-          return (
-            <div key={resource.title} className="card shadow-lg p-4 bg-white rounded">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="resource-title text-xl font-semibold mb-2">{resource.title}</h3>
-                <button
-                  type="button"
-                  onClick={() => toggleLike(resource.title)}
-                  aria-label={
-                    liked ? "Remove resource from favorites" : "Mark resource as favorite"
-                  }
-                  aria-pressed={liked}
-                  className={`rounded-full p-2 text-lg transition ${
-                    liked
-                      ? "text-rose-500"
-                      : "text-gray-400 hover:text-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
-                  }`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill={liked ? "currentColor" : "none"}
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="h-5 w-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 21c6-4.35 8-6.7 8-10a5 5 0 00-8-3.9A5 5 0 004 11c0 3.3 2 5.65 8 10z"
-                    />
-                  </svg>
-                </button>
-              </div>
+        {filteredResources.map((r) => (
+          <div key={r.title} className="card shadow-lg p-4 bg-white rounded">
+            <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
 
               <div className="resource-section mb-2">
                 <h4 className="font-semibold">About the Organization</h4>
@@ -588,17 +515,16 @@ export default function ResourcesPage() {
                 <p>{resource.contact}</p>
               </div>
 
-              <Link
-                href={resource.link}
-                target="_blank"
-                className="btn btn-primary mt-2 transition"
-              >
-                VIEW RESOURCE →
-              </Link>
-            </div>
-          );
-        })}
-        {resourcesToRender.length === 0 && (
+            <Link
+              href={r.link}
+              target="_blank"
+              className="btn btn-primary mt-2"
+            >
+              VIEW RESOURCE →
+            </Link>
+          </div>
+        ))}
+        {filteredResources.length === 0 && (
           <p className="text-center text-gray-500">No resources found.</p>
         )}
       </div>

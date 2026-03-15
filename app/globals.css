@@ -138,6 +138,48 @@ body {
     @apply mx-auto w-full max-w-6xl px-4 md:px-8;
   }
 
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #7f1d1d !important;
+    border-color: #7f1d1d !important;
+    color: #ffffff !important;
+    border-radius: 0.5rem !important;
+    box-shadow: none !important;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+
+  .cta-button.cta-button-full {
+    width: 100%;
+  }
+
+  .cta-button.cta-button-sm {
+    min-height: 2rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .cta-button:hover {
+    background-color: #991b1b !important;
+    border-color: #991b1b !important;
+    color: #ffffff !important;
+  }
+
+  .cta-button svg:last-child {
+    transition: transform 200ms ease;
+  }
+
+  .cta-button:hover svg:last-child {
+    transform: translateX(0.125rem);
+  }
+
   .hero-typing-heading {
     color: rgb(255 255 255 / 0.98);
     letter-spacing: 0.08em;

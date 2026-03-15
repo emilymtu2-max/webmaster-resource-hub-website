@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { saveSession, SessionUser } from "@/lib/session";
 
 const asianCountries = [
   "China",
@@ -192,9 +190,10 @@ export default function Signup() {
             </label>
             <button
               type="submit"
-              className="mt-4 w-full py-2 rounded-md bg-red-900 text-white font-semibold hover:bg-red-850 transition"
+              className="mt-4 w-full py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
             >
               Sign Up
+              <ArrowRightIcon />
             </button>
             {statusMessage && (
               <p className="text-sm text-center text-gray-600">{statusMessage}</p>
