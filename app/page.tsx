@@ -239,7 +239,7 @@ export default function Home() {
             title="Why Pulse Asia Exists"
             description="Too many people arrive in a new country full of hope, only to find themselves lost in language barriers, tangled in visa confusion, and quietly struggling with isolation they never expected. The cultural disconnect is real, and it is heavy.
             Pulse Asia exists to change that. We are here to make sure no one in the Asian community has to figure it out alone."
-            buttonLabel="Share Now"
+            buttonLabel="Learn More"
             buttonHref="/stat"
             imageClassName="h-[30rem] w-auto max-w-none md:h-[36rem] lg:ml-[-8rem] lg:h-[52rem] lg:scale-110"
           />
@@ -384,7 +384,7 @@ export default function Home() {
           backgroundImage: "url(/indiabeauty.jpg)",
         }}
       >
-        <div className="hero-overlay bg-red-950/65"></div>
+        <div className="hero-overlay bg-slate-950/45"></div>
         <div className="hero-content w-full max-w-none px-4 py-16 text-neutral-content md:px-8 lg:px-10">
           <div className="w-full max-w-[92rem]">
             <h2 className="max-w-5xl text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">

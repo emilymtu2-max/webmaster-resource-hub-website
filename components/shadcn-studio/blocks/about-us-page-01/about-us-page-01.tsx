@@ -24,7 +24,6 @@ const AboutUs = ({ stats }: { stats: StatItem }) => {
                   "Family",
                   "Home",
                   "Safe Place",
-                  "You and Me",
                 ]}
                 className="text-amber-100"
                 duration={2600}

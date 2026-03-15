@@ -46,7 +46,7 @@ const groupedNavLinks = [
 
 export default function HeaderNav() {
   return (
-    <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
+    <div className="navbar sticky top-0 z-50 border-b border-transparent bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
       <div className="page-container grid w-full grid-cols-[auto_1fr] items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
         <div className="flex-none">
           <Link href="/" className="btn btn-ghost text-xl text-red-900">
@@ -75,7 +75,7 @@ export default function HeaderNav() {
                     >
                       More
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-[320px] rounded-xl border-base-300 bg-base-100 p-2 shadow-lg">
+                    <NavigationMenuContent className="w-[320px] rounded-xl border-transparent bg-base-100 p-2 shadow-lg">
                       <ul className="grid gap-1">
                         {groupedNavLinks.map((link) => {
                           const Icon = link.icon;

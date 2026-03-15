@@ -1,11 +1,7 @@
 'use client';
 
 import { useState, ChangeEvent } from 'react';
-<<<<<<< HEAD
-import React from 'react';
 import { ArrowRightIcon } from "lucide-react";
-=======
->>>>>>> 3063e78f13efaa58afcf556e50600e70cc383442
 
 interface FormState {
   firstName: string;
@@ -140,15 +136,7 @@ export default function SuggestionsFormPage() {
             </div>
           )}
 
-<<<<<<< HEAD
           <button className="cta-button mt-2 w-fit" onClick={handleSubmit}>
-=======
-          {/* Submit button */}
-          <button
-            className="btn bg-[#6B0000] text-white border-none font-bold w-fit px-10 hover:bg-[#8B1A1A] rounded-xl"
-            onClick={handleSubmit}
-          >
->>>>>>> 3063e78f13efaa58afcf556e50600e70cc383442
             Submit Form
             <ArrowRightIcon />
           </button>
@@ -157,74 +145,4 @@ export default function SuggestionsFormPage() {
       </div>
     </main>
   );
-<<<<<<< HEAD
 }
-
-const styles: { [key: string]: React.CSSProperties } = {
-  page: {
-    backgroundColor: '#6B0000',
-    padding: '40px 0',
-    minHeight: '60vh',
-  },
-  container: {
-    maxWidth: '860px',
-    margin: '0 auto',
-    padding: '0 24px',
-  },
-  breadcrumb: {
-    color: '#F5C842',
-    fontSize: '14px',
-    marginBottom: '20px',
-  },
-  title: {
-    fontSize: '52px',
-    fontWeight: 'bold',
-    color: '#F5C842',
-    lineHeight: 1.1,
-    marginBottom: '16px',
-  },
-  subtitle: {
-    fontSize: '16px',
-    color: '#fff',
-    marginBottom: '36px',
-    maxWidth: '540px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  },
-  row: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '16px',
-  },
-  input: {
-    backgroundColor: '#8B1A1A',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '18px 16px',
-    color: '#fff',
-    fontSize: '15px',
-    outline: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  textarea: {
-    backgroundColor: '#8B1A1A',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '18px 16px',
-    color: '#fff',
-    fontSize: '15px',
-    outline: 'none',
-    resize: 'vertical',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  successMsg: { color: '#90EE90', fontWeight: 'bold' },
-  errorMsg: { color: '#FF6B6B', fontWeight: 'bold' },
-};
-=======
-}
->>>>>>> 3063e78f13efaa58afcf556e50600e70cc383442
