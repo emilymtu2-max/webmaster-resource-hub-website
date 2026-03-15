@@ -1,5 +1,5 @@
 'use client';
-
+import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from 'react';
 import React from 'react';
 
@@ -13,6 +13,7 @@ interface FormState {
 }
 
 export default function SuggestionsFormPage() {
+  const router = useRouter();
   const [form, setForm] = useState<FormState>({
     firstName: '', lastName: '', phone: '', email: '',
     whereFound: '', sourceLink: '',
@@ -23,26 +24,26 @@ export default function SuggestionsFormPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => {
-    setStatus(null);
-    try {
-      const res = await fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+ const handleSubmit = async () => {
+  setStatus(null);
 
-      if (res.ok) {
-        setStatus('success');
-        setForm({ firstName: '', lastName: '', phone: '', email: '', whereFound: '', sourceLink: '' });
-      } else {
-        const data = await res.json();
-        setStatus(data.error || 'error');
-      }
-    } catch {
-      setStatus('Something went wrong. Please try again.');
+  try {
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    });
+
+    if (res.ok) {
+      router.push("/form");   // goes to your thank you page
+    } else {
+      setStatus("Submission failed.");
     }
-  };
+
+  } catch {
+    setStatus('Something went wrong. Please try again.');
+  }
+};
 
   return (
     <main style={styles.page}>
