@@ -438,11 +438,18 @@ export default function ResourcesPage() {
 
       {/* SEARCH + FILTERS BACKGROUND */}
       <div
-        className="flex flex-col items-center justify-center p-8 gap-4 bg-cover bg-center"
+        className="flex flex-col items-center justify-center p-8 gap-4"
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/6983438/pexels-photo-6983438.jpeg')",
+          backgroundImage:
+            "url('https://images.pexels.com/photos/6983438/pexels-photo-6983438.jpeg')",
+          backgroundSize: "cover",       // cover the container without repeating
+          backgroundPosition: "center",  // center the image
+          backgroundRepeat: "no-repeat", // prevent tiling
+          backgroundAttachment: "fixed",  // keep it fixed while scrolling
+          minHeight: "400px",            
+          width: "100%",
         }}
-      >
+          >
 
       {/* RESOURCE SEARCH */}
       <div className="flex items-center border rounded-full px-6 py-3 w-full max-w-6xl bg-white shadow-sm">
@@ -512,6 +519,8 @@ export default function ResourcesPage() {
         </div>
       </div>
 
+      <div className="flex-1 bg-black">
+
       {/* RESOURCE CARDS */}
       <div
         className="resources-container p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 bg-cover bg-center"
@@ -564,6 +573,7 @@ export default function ResourcesPage() {
           )}
         </div>
       </div>
+    </div>
     </div>
   )
 }
