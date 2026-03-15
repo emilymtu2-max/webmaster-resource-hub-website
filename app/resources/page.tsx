@@ -589,19 +589,7 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
-  
-      
 
-      {/* RESOURCE CARDS */}
-      <section
-        className="resources-hero p-6 text-center"
-        style={{ backgroundColor: "#debe8a" }}
-      >
-        <h1 className="text-3xl font-bold mb-2">Resource Hub</h1>
-        <p>
-          A curated collection of organizations, tools, and programs that support immigrant communities and promote education, legal access, and cultural awareness.
-        </p>
-      </section>
 
       {/* SEARCH + FILTERS BACKGROUND */}
       <div
