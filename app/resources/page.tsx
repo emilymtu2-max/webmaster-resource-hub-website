@@ -402,6 +402,8 @@ export default function ResourcesPage() {
   const [showLikedOnly, setShowLikedOnly] = useState(false);
   const [sortByLiked, setSortByLiked] = useState(false);
 
+  const STORAGE_KEY = "pulseasia_resources_liked";
+
   const categories = useMemo(
     () => ["All", ...new Set(resources.map((resource) => resource.category))],
     []
@@ -496,24 +498,24 @@ export default function ResourcesPage() {
 
       {/* RESOURCE CARDS */}
       <div className="resources-container p-4 flex-1 overflow-y-auto space-y-4 max-h-[600px]">
-        {filteredResources.map((r) => (
+        {resourcesToRender.map((r) => (
           <div key={r.title} className="card shadow-lg p-4 bg-white rounded">
             <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
 
-              <div className="resource-section mb-2">
-                <h4 className="font-semibold">About the Organization</h4>
-                <p>{resource.about}</p>
-              </div>
+            <div className="resource-section mb-2">
+              <h4 className="font-semibold">About the Organization</h4>
+              <p>{r.about}</p>
+            </div>
 
-              <div className="resource-section mb-2">
-                <h4 className="font-semibold">What the Resource Does</h4>
-                <p>{resource.does}</p>
-              </div>
+            <div className="resource-section mb-2">
+              <h4 className="font-semibold">What the Resource Does</h4>
+              <p>{r.does}</p>
+            </div>
 
-              <div className="resource-section mb-2">
-                <h4 className="font-semibold">Contact Information</h4>
-                <p>{resource.contact}</p>
-              </div>
+            <div className="resource-section mb-2">
+              <h4 className="font-semibold">Contact Information</h4>
+              <p>{r.contact}</p>
+            </div>
 
             <Link
               href={r.link}
@@ -524,7 +526,7 @@ export default function ResourcesPage() {
             </Link>
           </div>
         ))}
-        {filteredResources.length === 0 && (
+        {resourcesToRender.length === 0 && (
           <p className="text-center text-gray-500">No resources found.</p>
         )}
       </div>
@@ -534,5 +536,3 @@ export default function ResourcesPage() {
         <p>Empowering communities through education, access to resources, and cultural awareness.</p>
       </footer>
     </div>
-  );
-}

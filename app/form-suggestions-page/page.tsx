@@ -1,11 +1,7 @@
 'use client';
 
 import { useState, ChangeEvent } from 'react';
-<<<<<<< HEAD
-import React from 'react';
-import { ArrowRightIcon } from "lucide-react";
-=======
->>>>>>> 3063e78f13efaa58afcf556e50600e70cc383442
+import { ArrowRightIcon } from 'lucide-react';
 
 interface FormState {
   firstName: string;
@@ -16,11 +12,17 @@ interface FormState {
   sourceLink: string;
 }
 
+const initialFormState: FormState = {
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+  whereFound: '',
+  sourceLink: '',
+};
+
 export default function SuggestionsFormPage() {
-  const [form, setForm] = useState<FormState>({
-    firstName: '', lastName: '', phone: '', email: '',
-    whereFound: '', sourceLink: '',
-  });
+  const [form, setForm] = useState<FormState>(initialFormState);
   const [status, setStatus] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,7 +40,7 @@ export default function SuggestionsFormPage() {
 
       if (res.ok) {
         setStatus('success');
-        setForm({ firstName: '', lastName: '', phone: '', email: '', whereFound: '', sourceLink: '' });
+        setForm(initialFormState);
       } else {
         const data = await res.json();
         setStatus(data.error || 'error');
@@ -51,27 +53,25 @@ export default function SuggestionsFormPage() {
   return (
     <main className="min-h-screen bg-[#FDF6EC] py-12 px-6">
       <div className="max-w-3xl mx-auto">
-
         {/* Breadcrumb */}
         <div className="breadcrumbs text-[#8B1A1A] text-sm mb-6 opacity-70">
           <ul>
             <li>Home</li>
             <li>Resource Hub</li>
-            <li><strong>Suggest More Resources</strong></li>
+            <li>
+              <strong>Suggest More Resources</strong>
+            </li>
           </ul>
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl font-bold text-[#6B0000] leading-tight mb-4">
-          Suggest More Resources
-        </h1>
+        <h1 className="text-5xl font-bold text-[#6B0000] leading-tight mb-4">Suggest More Resources</h1>
         <p className="text-[#6B0000] text-base mb-10 max-w-xl opacity-80">
           Do you have any resources or organizations that you'd like us to add to our resource hub? Fill out the form below!
         </p>
 
         {/* Form Card */}
         <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col gap-5">
-
           {/* Row 1 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
@@ -140,91 +140,17 @@ export default function SuggestionsFormPage() {
             </div>
           )}
 
-<<<<<<< HEAD
-          <button className="cta-button mt-2 w-fit" onClick={handleSubmit}>
-=======
           {/* Submit button */}
           <button
-            className="btn bg-[#6B0000] text-white border-none font-bold w-fit px-10 hover:bg-[#8B1A1A] rounded-xl"
+            type="button"
+            className="btn bg-[#6B0000] text-white border-none font-bold w-fit px-10 hover:bg-[#8B1A1A] rounded-xl inline-flex items-center gap-2"
             onClick={handleSubmit}
           >
->>>>>>> 3063e78f13efaa58afcf556e50600e70cc383442
             Submit Form
-            <ArrowRightIcon />
+            <ArrowRightIcon className="h-5 w-5" />
           </button>
-
         </div>
       </div>
     </main>
   );
-<<<<<<< HEAD
 }
-
-const styles: { [key: string]: React.CSSProperties } = {
-  page: {
-    backgroundColor: '#6B0000',
-    padding: '40px 0',
-    minHeight: '60vh',
-  },
-  container: {
-    maxWidth: '860px',
-    margin: '0 auto',
-    padding: '0 24px',
-  },
-  breadcrumb: {
-    color: '#F5C842',
-    fontSize: '14px',
-    marginBottom: '20px',
-  },
-  title: {
-    fontSize: '52px',
-    fontWeight: 'bold',
-    color: '#F5C842',
-    lineHeight: 1.1,
-    marginBottom: '16px',
-  },
-  subtitle: {
-    fontSize: '16px',
-    color: '#fff',
-    marginBottom: '36px',
-    maxWidth: '540px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  },
-  row: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '16px',
-  },
-  input: {
-    backgroundColor: '#8B1A1A',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '18px 16px',
-    color: '#fff',
-    fontSize: '15px',
-    outline: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  textarea: {
-    backgroundColor: '#8B1A1A',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '18px 16px',
-    color: '#fff',
-    fontSize: '15px',
-    outline: 'none',
-    resize: 'vertical',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  successMsg: { color: '#90EE90', fontWeight: 'bold' },
-  errorMsg: { color: '#FF6B6B', fontWeight: 'bold' },
-};
-=======
-}
->>>>>>> 3063e78f13efaa58afcf556e50600e70cc383442

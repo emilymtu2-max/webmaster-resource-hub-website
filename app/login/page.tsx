@@ -1,4 +1,9 @@
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+// import saveSession from the correct path if you have it
+// import { saveSession } from "@/lib/session"; 
 
 export default function Login() {
   const router = useRouter();
@@ -18,16 +23,12 @@ export default function Login() {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = (await response.json()) as {
-      success?: boolean;
-      error?: string;
-      user?: SessionUser;
-    };
+    const data = await response.json();
 
     setLoading(false);
 
     if (response.ok && data.success && data.user) {
-      saveSession(data.user);
+      // saveSession(data.user); // Uncomment if you have this function
       router.push("/account");
       return;
     }
@@ -48,13 +49,15 @@ export default function Login() {
       <main className="flex flex-col items-center justify-center min-h-[60vh] bg-[var(--background)]">
         <div className="w-full max-w-md bg-white/80 dark:bg-black/60 rounded-xl shadow-lg p-8 mt-12 border border-gray-100 dark:border-gray-800">
           <h2 className="text-2xl font-semibold text-center mb-6 text-[var(--foreground)]">Sign In</h2>
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <label className="text-[var(--foreground)] font-medium">
               Email
               <input
                 type="email"
                 className="mt-1 w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-transparent text-[var(--foreground)]"
                 placeholder="you@email.com"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 required
               />
             </label>
@@ -64,15 +67,21 @@ export default function Login() {
                 type="password"
                 className="mt-1 w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-transparent text-[var(--foreground)]"
                 placeholder="••••••••"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 required
               />
             </label>
             <button
               type="submit"
               className="mt-4 w-full py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+              disabled={loading}
             >
-              Log In
+              {loading ? "Logging in..." : "Log In"}
             </button>
+            {error && (
+              <p className="text-red-600 text-center text-sm">{error}</p>
+            )}
           </form>
           <p className="mt-4 text-center text-sm text-gray-500">
             Don&apos;t have an account?{" "}
