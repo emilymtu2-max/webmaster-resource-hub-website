@@ -117,7 +117,7 @@ export default function StatisticsPage() {
             <div className="stat bg-base-100 shadow rounded-box">
               <div className="stat-title">Need of Financial Aid</div>
               <div className="stat-value">58%</div>
-              <div className="stat-desc">Obtained financial asssistance for the first 6 months</div>
+              <div className="stat-desc">Obtained financial asssistance for first 6 months</div>
             </div>
           </div>
 
@@ -187,7 +187,7 @@ export default function StatisticsPage() {
               Opinions on U.S. Immigration System
             </h3>
             <p className="mb-6">
-              A majority of Asian immigrants believe the U.S. immigration system needs major or complete changes, highlighting the need for policy reform and community support.
+              A majority of Asian immigrants believe the U.S. immigration system requires major or complete changes, reflecting widespread challenges they face in navigating complex visa processes, employment authorization, and residency pathways. This sentiment underscores the importance of thoughtful policy reform, as well as increased community support, resources, and advocacy to help immigrants access essential services, understand their rights, and integrate successfully into society.
             </p>
             <div className="h-[350px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -196,8 +196,8 @@ export default function StatisticsPage() {
                   <YAxis dataKey="group" type="category" />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="minorChanges" stackId="a" fill="#f59e0b" name="Minor/No Changes" />
-                  <Bar dataKey="majorChanges" stackId="a" fill="#3b82f6" name="Major/Complete Changes" />
+                  <Bar dataKey="minorChanges" stackId="a" fill="#EBBE27" name="Minor/No Changes" />
+                  <Bar dataKey="majorChanges" stackId="a" fill="#F9AF85" name="Major/Complete Changes" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
