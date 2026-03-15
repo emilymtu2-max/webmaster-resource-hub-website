@@ -34,10 +34,7 @@
     "react-dom": "19.2.3",
     "react-globe.gl": "^2.37.0",
     "react-leaflet": "^5.0.0",
-<<<<<<< HEAD
-=======
     "recharts": "^3.8.0",
->>>>>>> a268c6bbe0fc05de3f19e7c6d8c60821f9a4aeb5
     "tailwind-merge": "^3.4.1",
     "three": "^0.183.2"
   },
