@@ -30,7 +30,12 @@ export default function AccountPage() {
     return (
       <section className="min-h-[60vh] flex flex-col items-center justify-center gap-4 bg-[var(--background)] text-center">
         <div className="p-6 rounded-2xl shadow-lg bg-white/70 border border-gray-200 max-w-md">
-          <h1 className="text-2xl font-semibold text-red-900 mb-2">Account</h1>
+          <div className="flex flex-col items-center gap-4">
+            <div className="h-20 w-20 rounded-full bg-gray-300 flex items-center justify-center text-3xl font-bold text-gray-600">
+              ?
+            </div>
+            <h1 className="text-2xl font-semibold text-red-900 mb-2">Account</h1>
+          </div>
           <p className="text-base text-gray-600 mb-4">
             You are not currently signed in. Create or log into your account to keep your profile data available across sessions.
           </p>

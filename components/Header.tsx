@@ -1,22 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { readSession, onSessionUpdate, SessionUser } from "@/lib/session";
-import { capitalizeFirstLetter } from "@/lib/text";
 import { navLinks } from "@/lib/nav-links";
+import AccountButton from "@/components/AccountButton";
 
 export default function Header() {
-  const [user, setUser] = useState<SessionUser | null>(null);
-
-  useEffect(() => {
-    setUser(readSession());
-    return onSessionUpdate((updated) => setUser(updated));
-  }, []);
-
-  const displayName = user ? capitalizeFirstLetter(user.firstName) : null;
-  const initials = displayName ? displayName.charAt(0).toUpperCase() : "?";
-
   return (
     <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
       <div className="flex-1">
@@ -31,7 +19,7 @@ export default function Header() {
           </Link>
         ))}
       </div>
-      <div className="flex-none">
+      <div className="flex items-center gap-2">
         <div className="dropdown dropdown-end md:hidden">
           <label tabIndex={0} className="btn btn-ghost text-red-900">
             <span className="sr-only">Open navigation</span>
@@ -62,22 +50,7 @@ export default function Header() {
             ))}
           </ul>
         </div>
-        <Link
-          href="/account"
-          className="group flex items-center gap-3 ml-4 rounded-full border border-transparent px-3 py-1 hover:border-gray-300 text-left"
-        >
-          <div className="avatar">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 text-white flex items-center justify-center text-lg font-bold">
-              {initials}
-            </div>
-          </div>
-          <div className="hidden md:flex flex-col text-right transition-colors duration-150 group-hover:text-gray-600">
-            <span className="text-xs uppercase text-gray-400">{user ? "Signed in as" : "Guest"}</span>
-            <span className="text-sm font-semibold text-gray-700">
-              {displayName ?? "Not logged in"}
-            </span>
-          </div>
-        </Link>
+        <AccountButton />
       </div>
     </div>
   );

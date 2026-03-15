@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-// import saveSession from the correct path if you have it
-// import { saveSession } from "@/lib/session"; 
+import { saveSession, SessionUser } from "@/lib/session";
 
 export default function Login() {
   const router = useRouter();
@@ -28,7 +26,7 @@ export default function Login() {
     setLoading(false);
 
     if (response.ok && data.success && data.user) {
-      // saveSession(data.user); // Uncomment if you have this function
+      saveSession(data.user as SessionUser);
       router.push("/account");
       return;
     }
@@ -74,7 +72,7 @@ export default function Login() {
             </label>
             <button
               type="submit"
-              className="mt-4 w-full py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+              className="mt-4 w-full py-2 rounded-md bg-red-900 text-white font-semibold hover:bg-red-850 transition"
               disabled={loading}
             >
               {loading ? "Logging in..." : "Log In"}
