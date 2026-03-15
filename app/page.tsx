@@ -455,10 +455,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Link href="/login" className="cta-button mt-2">
-        Go to Login Page (Temporary)
-        <ArrowRightIcon />
-      </Link>
     </>
   );
 }
