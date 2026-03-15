@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
+import type { TooltipContentProps } from "recharts"
 
 import { cn } from "@/lib/utils"
 
@@ -113,7 +114,8 @@ function ChartTooltipContent({
   hideIndicator = false,
   labelKey,
   nameKey,
-}: React.ComponentProps<typeof RechartsPrimitive.Tooltip> & {
+}: TooltipContentProps<number | string, string> & {
+  className?: string
   hideLabel?: boolean
   hideIndicator?: boolean
   indicator?: "line" | "dot"
@@ -138,6 +140,15 @@ function ChartTooltipContent({
         {payload.map((item, index) => {
           const key = String(nameKey ? item.payload?.[nameKey] : item.dataKey ?? item.name ?? index)
           const itemConfig = config[key] ?? config[String(item.dataKey)] ?? {}
+          const itemLabel =
+            itemConfig.label ??
+            (typeof item.name === "string" || typeof item.name === "number"
+              ? item.name
+              : typeof labelKey === "string"
+                ? labelKey
+                : typeof item.dataKey === "string" || typeof item.dataKey === "number"
+                  ? item.dataKey
+                  : "")
 
           return (
             <div key={key} className="flex items-center justify-between gap-4">
@@ -149,7 +160,7 @@ function ChartTooltipContent({
                   />
                 ) : null}
                 <span className="text-base-content/70">
-                  {itemConfig.label ?? item.name ?? labelKey ?? item.dataKey}
+                  {itemLabel}
                 </span>
               </div>
               <span className="font-medium text-base-content">
