@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
 
 export default function FooterCta() {
   return (
@@ -19,11 +20,9 @@ export default function FooterCta() {
             networks designed to help Asian communities across the Pacific Northwest
             find what they need faster.
           </p>
-          <Link
-            href="/resources"
-            className="btn mt-8 border-red-900 bg-red-900 text-white hover:border-red-800 hover:bg-red-800"
-          >
+          <Link href="/resources" className="cta-button mt-8">
             Go To Resource Hub
+            <ArrowRightIcon />
           </Link>
         </div>
       </div>

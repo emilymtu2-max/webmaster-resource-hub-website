@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react"
 import Link from "next/link"
+import { ArrowRightIcon } from "lucide-react"
 
 const resources = [
 
@@ -518,12 +519,9 @@ export default function ResourcesPage() {
               <p>{r.contact}</p>
             </div>
 
-            <Link
-              href={r.link}
-              target="_blank"
-              className="btn btn-primary mt-2"
-            >
-              VIEW RESOURCE →
+            <Link href={r.link} target="_blank" className="cta-button mt-2">
+              VIEW RESOURCE
+              <ArrowRightIcon />
             </Link>
           </div>
         ))}

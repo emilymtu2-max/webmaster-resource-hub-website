@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ArrowRightIcon } from "lucide-react";
 
 const asianCountries = [
   "China",
@@ -167,11 +168,9 @@ export default function Signup() {
                 onChange={e => setInterests(e.target.value)}
               />
             </label>
-            <button
-              type="submit"
-              className="mt-4 w-full py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
-            >
+            <button type="submit" className="cta-button cta-button-full mt-4">
               Sign Up
+              <ArrowRightIcon />
             </button>
           </form>
           <p className="mt-4 text-center text-sm text-gray-500">

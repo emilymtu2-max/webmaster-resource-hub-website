@@ -44,7 +44,7 @@ export default function ThankYouPage() {
           {/* left aligned button */}
           <div className="card-actions justify-start mt-4">
             <Link href="/">
-              <button className="btn btn-primary">
+              <button className="btn btn-primary form-page-button">
                 Return to Home
               </button>
             </Link>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "lucide-react";
 
 export default function Login() {
   return (
@@ -33,11 +34,9 @@ export default function Login() {
                 required
               />
             </label>
-            <button
-              type="submit"
-              className="mt-4 w-full py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
-            >
+            <button type="submit" className="cta-button cta-button-full mt-4">
               Log In
+              <ArrowRightIcon />
             </button>
           </form>
           <p className="mt-4 text-center text-sm text-gray-500">

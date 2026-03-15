@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from 'react';
 import React from 'react';
+import { ArrowRightIcon } from "lucide-react";
 
 interface FormState {
   firstName: string;
@@ -87,8 +88,9 @@ export default function SuggestionsFormPage() {
             <p style={styles.errorMsg}>✗ {status}</p>
           )}
 
-          <button style={styles.button} onClick={handleSubmit}>
+          <button className="cta-button mt-2 w-fit" onClick={handleSubmit}>
             Submit Form
+            <ArrowRightIcon />
           </button>
         </div>
       </div>
@@ -157,18 +159,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     resize: 'vertical',
     width: '100%',
     boxSizing: 'border-box',
-  },
-  button: {
-    backgroundColor: '#F5C842',
-    color: '#3D0000',
-    border: 'none',
-    borderRadius: '8px',
-    padding: '16px 40px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    alignSelf: 'flex-start',
-    marginTop: '8px',
   },
   successMsg: { color: '#90EE90', fontWeight: 'bold' },
   errorMsg: { color: '#FF6B6B', fontWeight: 'bold' },
