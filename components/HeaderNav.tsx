@@ -16,7 +16,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { navLinks } from "@/lib/nav-links";
+
+const topLevelLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/resources", label: "Resource Hub" },
+  { href: "/references", label: "References" },
+];
 
 const groupedNavLinks = [
   {
@@ -51,7 +56,7 @@ export default function HeaderNav() {
 
         <div className="hidden justify-center md:flex md:justify-self-center">
           <ul className="flex list-none items-center gap-1 px-1">
-            {navLinks.map((link) => (
+            {topLevelLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -104,8 +109,6 @@ export default function HeaderNav() {
           </ul>
         </div>
 
-        <div className="hidden md:block" />
-
         <div className="ml-auto md:hidden">
           <div className="dropdown dropdown-end">
             <button
@@ -131,7 +134,7 @@ export default function HeaderNav() {
               tabIndex={0}
               className="menu dropdown-content z-10 mt-3 w-56 rounded-box bg-base-100 p-2 shadow"
             >
-              {[...navLinks, ...groupedNavLinks].map((link) => (
+              {[...topLevelLinks, ...groupedNavLinks].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-red-900">
                     {link.label}
