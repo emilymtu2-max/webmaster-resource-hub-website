@@ -17,7 +17,7 @@ const AboutUs = ({ stats }: { stats: StatItem }) => {
         <div className="mb-12 space-y-4 text-center md:mb-16 lg:mb-24">
           <h2 className="text-4xl font-bold tracking-tight text-red-900 md:text-5xl lg:text-6xl">
             Pulse Asia is a
-            <span className="inline-block align-baseline text-amber-100">
+            <span className="inline-block align-baseline text-amber-500">
               <FlipWords
                 words={[
                   "Resource Hub",
@@ -25,7 +25,7 @@ const AboutUs = ({ stats }: { stats: StatItem }) => {
                   "Home",
                   "Safe Place",
                 ]}
-                className="text-amber-100"
+                className="text-amber-500"
                 duration={2600}
               />
             </span>
