@@ -213,7 +213,9 @@ export default function Signup() {
               type="submit"
               disabled={!formIsValid}
               className={`mt-4 w-full py-2 rounded-md font-semibold transition ${
-                formIsValid ? "bg-blue-600 text-white hover:bg-red-900" : "bg-blue-200 text-red-850 cursor-not-allowed"
+                formIsValid
+                  ? "bg-red-900 text-white hover:bg-[#7a1111]"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
             >
               Sign Up
