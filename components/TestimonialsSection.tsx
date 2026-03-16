@@ -27,8 +27,8 @@ const carouselCards = [
       "When I first moved to Seattle from the Philippines, I felt lost and overwhelmed. But through community events and local resources, I found a supportive network that helped me thrive.”",
   },
   {
-    title: "Samina's Journey",
-    person: "Samina",
+    title: "Chaerin's Journey",
+    person: "Chaerin",
     resourceCategory: "legal and educational resources",
     description:
       "PulseAsia connected me to legal guidance and educational opportunities that transformed my family's life. We are now thriving in our new home.",
@@ -41,14 +41,14 @@ const carouselCards = [
       "I was able to find culturally aware mental health support through PulseAsia, which made a huge difference in my adjustment to life in the Pacific Northwest.",
   },
   {
-    title: "Peiying's Path",
+    title: "Tanush's Path",
     person: "Peiying",
     resourceCategory: "cultural resources",
     description:
       "Thanks to PulseAsia, I discovered local cultural events that helped me connect with my heritage and build a supportive community in my new city.",
   },
   {
-    title: "Gojo's Story",
+    title: "Rahul's Story",
     person: "Gojo",
     resourceCategory: "community support resources",
     description:
@@ -72,11 +72,11 @@ function CarouselDemo() {
         {carouselCards.map((card, index) => (
           <CarouselItem key={card.title} className="basis-full md:basis-1/2">
             <div className="p-1">
-              <Card className="min-h-[32rem] border-red-900/20 bg-base-100 py-0 text-red-900 md:min-h-[42rem]">
-                <CardHeader className="gap-5 pt-8">
+              <Card className="min-h-[20rem] border-red-900/20 bg-base-100 py-0 text-red-900 md:min-h-[28rem]">
+                <CardHeader className="gap-4 pt-6">
                   <div className="flex items-start justify-between gap-6">
                     <div className="avatar">
-                      <div className="w-24 rounded-xl">
+                      <div className="w-16 rounded-xl">
                         <img
                           src={profileImages[index % profileImages.length]}
                           alt="Testimonial profile"
@@ -87,20 +87,20 @@ function CarouselDemo() {
                       Testimonial
                     </CardAction>
                   </div>
-                  <div className="space-y-3">
-                    <CardTitle className="text-4xl md:text-5xl">{card.title}</CardTitle>
-                    <CardDescription className="text-lg text-red-900/70 md:text-xl">
+                  <div className="space-y-2">
+                    <CardTitle className="text-3xl md:text-4xl">{card.title}</CardTitle>
+                    <CardDescription className="text-base text-red-900/70 md:text-lg">
                       Community story from the Pacific Northwest
                     </CardDescription>
                   </div>
                 </CardHeader>
                 <CardContent className="pb-4">
-                  <p className="text-xl leading-relaxed text-red-950/80 md:text-2xl">
+                  <p className="text-lg leading-relaxed text-red-950/80 md:text-xl">
                     {card.description}
                   </p>
                 </CardContent>
-                <CardFooter className="flex flex-col items-start gap-4 pb-8 pt-0">
-                  <p className="text-sm leading-relaxed text-red-900/65 md:text-base">
+                <CardFooter className="flex flex-col items-start gap-4 pb-6 pt-0">
+                  <p className="text-xs leading-relaxed text-red-900/65 md:text-sm">
                     {card.person} used {card.resourceCategory}. Check them out.
                   </p>
                   <Link href="/resources" className="cta-button">
@@ -121,7 +121,7 @@ function CarouselDemo() {
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-red-900 py-28">
+    <section className="bg-red-900 py-20">
       <div className="mx-auto w-full max-w-[92rem] px-4 md:px-8 lg:px-10">
         <div className="grid w-full grid-cols-[1fr_minmax(0,44rem)_1fr] items-center gap-6">
           <div className="flex justify-center lg:justify-start">
@@ -142,11 +142,11 @@ export default function TestimonialsSection() {
             />
           </div>
         </div>
-        <p className="mx-auto mt-6 max-w-4xl text-center text-xl text-white/80 md:text-2xl">
+        <p className="mx-auto mt-2 max-w-4xl text-center text-xl text-white/80 md:text-2xl">
           These immigrant stories highlight the real impact of our work and the importance of accessible resources and community support for Asian American
         </p>
       </div>
-      <div className="page-container max-w-[92rem]">
+      <div className="page-container max-w-[92rem] mt-6">
         <CarouselDemo />
       </div>
     </section>

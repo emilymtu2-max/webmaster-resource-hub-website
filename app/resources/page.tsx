@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
-<<<<<<< HEAD
 const topResources = [
   {
     rank: "01",
@@ -40,7 +39,6 @@ const topResources = [
     imageSrc: "/aboutus-culture.jpg",
   },
 ];
-=======
 // Simple HeartIcon component (inline SVG)
 const HeartIcon = ({ className = "" }: { className?: string }) => (
   <svg
@@ -66,7 +64,6 @@ interface Resource {
   contact: string
   link: string
 }
->>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
 
 const resources = [
   {
@@ -466,102 +463,7 @@ export default function ResourcesPage() {
   return (
     <div className="min-h-screen flex flex-col">
 
-      {/* PAGE TITLE */}
-<<<<<<< HEAD
-       <section className="py-32">
-        <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
-          <div className="mx-auto max-w-[92rem]">
-            <div className="grid w-full grid-cols-[1fr_minmax(0,44rem)_1fr] items-center gap-6">
-              <div className="flex justify-center lg:justify-start">
-                <img
-                  src="/doodlered.png"
-                  alt="Red doodle accent"
-                  className="h-28 w-auto object-contain md:h-36"
-                />
-              </div>
-              <div className="mx-auto w-full text-center">
-                <h2 className="text-balance text-5xl font-bold md:text-6xl">
-                  Highlighted Resources
-                </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-balance text-xl text-base-content/70 md:text-2xl">
-                  From our large database of resources, here are some of the most popular and impactful organizations that our community has found helpful. Explore these highlighted resources to find support, education, and connection.
-                </p>
-              </div>
-              <div className="flex justify-center lg:justify-end">
-                <img
-                  src="/yellowStarish.png"
-                  alt="Yellow doodle accent"
-                  className="h-32 w-auto object-contain md:h-40"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="pb-8">
-        <div className="mx-auto w-full max-w-[92rem] px-4 md:px-8 lg:px-10">
-          <ul className="list rounded-box bg-base-100 shadow-md">
-            <li className="p-4 pb-2 text-xs tracking-wide opacity-60">
-              Top Three Resources
-            </li>
-
-            {topResources.map((resource) => (
-              <li key={resource.rank} className="list-row">
-                <div className="tabular-nums text-4xl font-thin opacity-30">
-                  {resource.rank}
-                </div>
-                <div>
-                  <img
-                    className="size-14 rounded-box object-cover"
-                    src={resource.imageSrc}
-                    alt={resource.title}
-                  />
-                </div>
-                <div className="list-col-grow">
-                  <div className="text-lg font-semibold">{resource.title}</div>
-                  <div className="text-xs font-semibold uppercase opacity-60">
-                    {resource.subtitle} • {resource.category}
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-base-content/75">
-                    <span className="font-medium text-base-content">About:</span>{" "}
-                    {resource.about}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-base-content/75">
-                    <span className="font-medium text-base-content">What it does:</span>{" "}
-                    {resource.details}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-base-content/75">
-                    <span className="font-medium text-base-content">Contact:</span>{" "}
-                    {resource.contact}
-                  </p>
-                </div>
-                <a
-                  href="/resources"
-                  className="btn btn-square btn-ghost"
-                  aria-label={`View ${resource.title}`}
-                >
-                  <svg
-                    className="size-[1.2em]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <g
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path d="M6 3L20 12 6 21 6 3z"></path>
-                    </g>
-                  </svg>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      
 
        <section className="py-32">
         <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
@@ -593,23 +495,9 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
-  
-      
 
-      {/* RESOURCE CARDS */}
-=======
-      <section
-        className="resources-hero p-6 text-center"
-        style={{ backgroundColor: "#debe8a" }}
-      >
-        <h1 className="text-3xl font-bold mb-2">Resource Hub</h1>
-        <p>
-          A curated collection of organizations, tools, and programs that support immigrant communities and promote education, legal access, and cultural awareness.
-        </p>
-      </section>
 
       {/* SEARCH + FILTERS BACKGROUND */}
->>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
       <div
         className="flex flex-col items-center justify-center p-8 gap-4"
         style={{
@@ -691,8 +579,6 @@ export default function ResourcesPage() {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-=======
 
       <div className="flex-1 bg-black">
 
@@ -749,7 +635,6 @@ export default function ResourcesPage() {
         </div>
       </div>
     </div>
->>>>>>> 6c690d4bc24848de643bf94fc0cfc1e7a50b159e
     </div>
   )
 }

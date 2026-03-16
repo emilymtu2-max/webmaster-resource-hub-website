@@ -5,6 +5,7 @@ import {
   CircleAlertIcon,
   CircleCheckIcon,
   CircleDashedIcon,
+  StarIcon,
 } from "lucide-react";
 
 import {
@@ -43,7 +44,15 @@ const groupedNavLinks = [
     description: "Explore data and context that shape the resource hub.",
     icon: CircleCheckIcon,
   },
+  {
+    href: "/topthree",
+    label: "Highlighted Resources",
+    description: "Explore our top recommended resources for support and education.",
+    icon: StarIcon,
+  },
 ];
+
+
 
 export default function HeaderNav() {
   return (
