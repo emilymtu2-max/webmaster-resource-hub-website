@@ -1,6 +1,7 @@
 // app/page.tsx
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
+import SmallGlobe from "@/components/SmallGlobe";
 
 import {
   Card,
@@ -141,6 +142,30 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
+      <section className="py-28 bg-base-100">
+        <div className="mx-auto max-w-[92rem] px-4 md:px-8 lg:px-10 text-center">
+
+          <h2 className="text-5xl font-bold md:text-6xl">
+            Our Community Around the World
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-3xl text-xl text-base-content/70 md:text-2xl">
+            Asian communities across the world contribute culture, innovation,
+            and connection. PulseAsia helps link these communities with
+            resources throughout the Pacific Northwest.
+          </p>
+
+          <div className="mt-16 flex justify-center">
+            <SmallGlobe
+              width={650}
+              height={450}
+              autoRotate={true}
+            />
+          </div>
+
+        </div>
+      </section>
 
       <section className="py-24">
         <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
