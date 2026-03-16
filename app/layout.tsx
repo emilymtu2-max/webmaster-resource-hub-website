@@ -31,10 +31,6 @@ export default function RootLayout({
               alt="Pulse Asia Logo"
               className="h-48 w-48rounded-md object-contain"
             />
-            <p className="text-base">
-              <br />
-              Supporting Asian American Immigrants in the Pacific Northwest since 2021
-            </p>
           </aside>
 
           <nav>

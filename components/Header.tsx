@@ -6,10 +6,14 @@ import AccountButton from "@/components/AccountButton";
 
 export default function Header() {
   return (
-    <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
+    <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/95 text-red-900 shadow-sm backdrop-blur pt-10">
       <div className="flex-1">
-        <Link href="/" className="btn btn-ghost text-xl text-red-900">
-          PulseAsia
+        <Link href="/" className="flex items-center">
+          <img
+            src="/PULSEASIALOGO.png"
+            alt="PulseAsia Logo"
+            className="h-20 w-auto -mt-10"
+          />
         </Link>
       </div>
       <div className="hidden md:flex gap-2 text-sm">
