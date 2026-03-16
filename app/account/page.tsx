@@ -28,7 +28,7 @@ export default function AccountPage() {
 
   if (!user) {
     return (
-      <section className="min-h-[60vh] flex flex-col items-center justify-center gap-4 bg-[var(--background)] text-center">
+      <section className="min-h-[60vh] flex flex-col items-center justify-center gap-4 bg-[#f4ece1] text-center">
         <div className="p-6 rounded-2xl shadow-lg bg-white/70 border border-gray-200 max-w-md">
           <div className="flex flex-col items-center gap-4">
             <div className="h-20 w-20 rounded-full bg-gray-300 flex items-center justify-center text-3xl font-bold text-gray-600">
@@ -53,7 +53,7 @@ export default function AccountPage() {
   }
 
   return (
-    <section className="min-h-[70vh] bg-[var(--background)] py-12">
+    <section className="min-h-[70vh] bg-[#f4ece1] py-12">
       <div className="max-w-4xl mx-auto bg-white/90 dark:bg-black/70 rounded-3xl border border-base-200 shadow-xl p-8">
         <div className="flex flex-col md:flex-row items-center gap-6">
           <div className="avatar placeholder w-24 h-24">
@@ -110,7 +110,7 @@ export default function AccountPage() {
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <Link href="/form-suggestions-page" className="btn btn-outline btn-sm">
-                Share feedback
+                Suggest Resources😭✌️💔
               </Link>
               <Link href="/resources" className="btn btn-primary btn-sm">
                 Explore resources

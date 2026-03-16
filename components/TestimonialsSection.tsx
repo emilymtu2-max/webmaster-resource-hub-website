@@ -63,11 +63,13 @@ const carouselCards = [
   },
 ];
 
+const profileImages = ["/OldLadyPfp.png", "/ManPfp.png", "/WomanPfp.png"];
+
 function CarouselDemo() {
   return (
     <Carousel className="mx-auto w-full">
       <CarouselContent>
-        {carouselCards.map((card) => (
+        {carouselCards.map((card, index) => (
           <CarouselItem key={card.title} className="basis-full md:basis-1/2">
             <div className="p-1">
               <Card className="min-h-[32rem] border-red-900/20 bg-base-100 py-0 text-red-900 md:min-h-[42rem]">
@@ -76,7 +78,7 @@ function CarouselDemo() {
                     <div className="avatar">
                       <div className="w-24 rounded-xl">
                         <img
-                          src="https://img.daisyui.com/images/profile/demo/yellingwoman@192.webp"
+                          src={profileImages[index % profileImages.length]}
                           alt="Testimonial profile"
                         />
                       </div>

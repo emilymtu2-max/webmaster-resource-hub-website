@@ -47,10 +47,13 @@ const groupedNavLinks = [
 
 export default function HeaderNav() {
   return (
-    <div className="navbar sticky top-0 z-50 border-b border-transparent bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
+    <div className="navbar sticky top-0 z-[1200] border-b border-transparent bg-base-100/95 text-red-900 shadow-sm backdrop-blur">
       <div className="page-container flex w-full items-center justify-between gap-4 md:grid md:grid-cols-[auto_1fr_auto]">
         <div className="flex items-center gap-2">
-          <Link href="/" className="btn btn-ghost text-xl text-red-900">
+          <Link
+            href="/"
+            className="btn btn-ghost text-xl text-red-900 hover:bg-transparent focus-visible:outline-none"
+          >
             PulseAsia
           </Link>
         </div>
@@ -61,7 +64,7 @@ export default function HeaderNav() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-red-900 transition-colors hover:bg-base-200 hover:text-red-900 focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
+                  className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-red-900 transition-[transform,color,background-color] duration-200 hover:scale-105 hover:bg-base-200 hover:text-red-900 focus-visible:outline-none"
                 >
                   {link.label}
                 </Link>
@@ -72,11 +75,11 @@ export default function HeaderNav() {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
-                      className={`${navigationMenuTriggerStyle()} bg-transparent text-red-900 hover:bg-base-200 hover:text-red-900 focus:bg-base-200 data-[state=open]:bg-base-200 data-[state=open]:text-red-900`}
+                      className={`${navigationMenuTriggerStyle()} bg-transparent text-red-900 transition-[transform,color,background-color] duration-200 hover:scale-105 hover:bg-base-200 hover:text-red-900 focus:bg-base-200 focus-visible:outline-none data-[state=open]:bg-base-200 data-[state=open]:text-red-900`}
                     >
                       More
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-[320px] rounded-xl border-transparent bg-base-100 p-2 shadow-lg">
+                    <NavigationMenuContent className="z-[1300] w-[320px] rounded-xl border-transparent bg-base-100 p-2 shadow-lg">
                       <ul className="grid gap-1">
                         {groupedNavLinks.map((link) => {
                           const Icon = link.icon;
@@ -135,7 +138,7 @@ export default function HeaderNav() {
               </button>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content z-10 mt-3 w-56 rounded-box bg-base-100 p-2 shadow"
+                className="menu dropdown-content z-[1300] mt-3 w-56 rounded-box bg-base-100 p-2 shadow"
               >
                 {[...topLevelLinks, ...groupedNavLinks].map((link) => (
                   <li key={link.href}>

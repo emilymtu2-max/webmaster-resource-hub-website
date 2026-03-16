@@ -3,7 +3,15 @@ import AboutHeroBlock from "@/components/shadcn-studio/blocks/about-us-page-01/a
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { MedalIcon, SparklesIcon, StarIcon, TargetIcon } from "lucide-react";
+import {
+  BookOpenIcon,
+  HeartHandshakeIcon,
+  MedalIcon,
+  SparklesIcon,
+  StarIcon,
+  TargetIcon,
+  UsersIcon,
+} from "lucide-react";
 
 type TimelineEntry = {
   date: string;
@@ -75,21 +83,25 @@ const aboutStats = [
 
 const valuesData = [
   {
+    icon: HeartHandshakeIcon,
     title: "Community First",
     description:
       "Every decision we make starts with one question. Does this serve our community? We exist for the people, not the other way around.",
   },
   {
+    icon: UsersIcon,
     title: "Belonging Without Borders",
     description:
       "No one should feel like a stranger in the place they call home. We create spaces where every background, dialect, and culture is welcomed without hesitation.",
   },
   {
+    icon: BookOpenIcon,
     title: "Empowerment Through Knowledge",
     description:
       "Confusion and misinformation hold people back. We cut through the noise and give our community the tools, resources, and confidence to move forward.",
   },
   {
+    icon: SparklesIcon,
     title: "Joy as a Foundation",
     description:
       "Resilience does not have to look like struggle. We believe that celebrating culture, sharing laughter, and building genuine friendships are just as important as any resource we provide.",
@@ -188,12 +200,15 @@ export default function AboutUs() {
         </section>
 
         <section className="my-12 grid gap-8 md:grid-cols-2">
-          {valuesData.map((value) => (
+          {valuesData.map((value) => {
+            const Icon = value.icon;
+
+            return (
             <Card key={value.title} className="h-full border-red-900/20 py-0 shadow-md">
               <CardContent className="flex h-full flex-col gap-6 p-8">
                 <div className="flex items-start gap-6">
-                  <div className="flex size-16 items-center justify-center rounded-2xl border border-dashed border-red-900/35 bg-red-50 text-sm font-medium text-red-900/55">
-                    Icon
+                  <div className="flex size-16 items-center justify-center rounded-2xl border border-dashed border-red-900/35 bg-red-50 text-red-900">
+                    <Icon className="size-7" />
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -204,7 +219,8 @@ export default function AboutUs() {
                 </div>
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
         </section>
       </main>
 
