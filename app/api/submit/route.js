@@ -28,21 +28,34 @@ export async function POST(request) {
       );
     }
 
-    const { error } = await supabase
-      .from('suggestions')
-      .insert([{
-        first_name: firstName,
-        last_name: lastName,
-        phone: phone,
-        email: email,
-        where_found: whereFound,
-        source_link: sourceLink,
-      }]);
+    if (supabase) {
+      const { error } = await supabase
+        .from('suggestions')
+        .insert([{
+          first_name: firstName,
+          last_name: lastName,
+          phone: phone,
+          email: email,
+          where_found: whereFound,
+          source_link: sourceLink,
+        }]);
 
-    if (error) {
-      console.error('Supabase error:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      if (error) {
+        console.error('Supabase error:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+
+      return NextResponse.json({ success: true }, { status: 201 });
     }
+
+    // Fallback to SQLite-based persistence
+    const { getDb } = await import('@/lib/db');
+    const db = getDb();
+    const stmt = db.prepare(`
+      INSERT INTO suggestions (first_name, last_name, phone, email, where_found, source_link)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `);
+    stmt.run(firstName, lastName, phone, email, whereFound, sourceLink);
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
