@@ -37,22 +37,34 @@ export default function SuggestionsFormPage() {
     }
   };
 
-  const inputClass = "w-full bg-[#3D0000] text-white placeholder-[#a87070] rounded-xl px-4 py-3 border border-[#6B0000] shadow-[0_0_0_1px_#8B1A1A] focus:outline-none focus:shadow-[0_0_0_2px_#F5C842] transition-all";
+  const inputClass = "w-full bg-[#F5E6D0] text-[#6B0000] placeholder-[#b08060] rounded-xl px-4 py-3 border-2 border-[#D4A574] focus:outline-none focus:border-[#6B0000] transition-all";
 
   return (
-    <main className="min-h-screen bg-[#FDF6EC] py-12 px-6">
+    <main
+      className="min-h-screen py-12 px-6"
+      style={{
+        backgroundImage: "url('/lantern-bg.avif')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="max-w-3xl mx-auto">
 
         {/* Title */}
         <h1 className="text-5xl font-bold text-[#6B0000] leading-tight mb-4">
           Suggest More Resources
         </h1>
-        <p className="text-[#6B0000] text-base mb-10 max-w-xl opacity-80">
-          Do you have any resources or organizations that you'd like us to add to our resource hub? Fill out the form below!
-        </p>
+
+        {/* Subtitle box */}
+        <div className="bg-[#6B0000] rounded-xl px-5 py-3 mb-8 border border-[#8B1A1A] w-fit">
+          <p className="text-[#F5E6D0] text-base font-medium">
+            Do you have any resources or organizations that you'd like us to add to our resource hub? Fill out the form below!
+          </p>
+        </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-2xl shadow-lg border border-[#e8d5c0] p-8 flex flex-col gap-5">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-[#e8d5c0] p-8 flex flex-col gap-5">
 
           {/* Row 1 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
