@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import L from "leaflet";
+import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 /* Fly to selected marker */
@@ -68,7 +68,7 @@ export default function LeafletMapInner({ locations = [], selectedLocation }: an
           key={loc.name}
           position={[loc.lat, loc.lng]}
           icon={createColoredDivIcon(categoryColors[loc.category] || "#6B7280")} // default gray
-          ref={(marker) => {
+          ref={(marker: any) => {
             if (marker) markersRef.current[loc.name] = marker;
           }}
         >
