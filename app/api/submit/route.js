@@ -5,7 +5,7 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABAS
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  console.warn('[submit] Missing Supabase config');
+  console.warn('[submit] Missing Supabase config; falling back to local SQLite');
 }
 
 const supabase = SUPABASE_URL && SUPABASE_ANON_KEY
@@ -19,43 +19,41 @@ export async function POST(request) {
 
     if (!firstName || !lastName || !email) {
       return NextResponse.json(
-        { error: 'First name, last name, and email are required.', body },
+        { error: 'First name, last name, and email are required.' },
         { status: 400 }
       );
     }
 
-    console.log('[submit] payload', body);
+    if (supabase) {
+      const { error } = await supabase
+        .from('suggestions')
+        .insert([{
+          first_name: firstName,
+          last_name: lastName,
+          phone: phone,
+          email: email,
+          where_found: whereFound,
+          source_link: sourceLink,
+        }]);
 
-    if (!supabase) {
-      return NextResponse.json({
-        error: 'Supabase config missing',
-        setenv: {
-          NEXT_PUBLIC_SUPABASE_URL: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL),
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
-          SUPABASE_URL: Boolean(process.env.SUPABASE_URL),
-          SUPABASE_ANON_KEY: Boolean(process.env.SUPABASE_ANON_KEY),
-        }
-      }, { status: 500 });
+      if (error) {
+        console.error('Supabase error:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+
+      return NextResponse.json({ success: true }, { status: 201 });
     }
 
-    const { data, error } = await supabase
-      .from('suggestions')
-      .insert([{
-        first_name: firstName,
-        last_name: lastName,
-        phone: phone,
-        email: email,
-        where_found: whereFound,
-        source_link: sourceLink,
-      }]);
+    // Fallback to SQLite-based persistence
+    const { getDb } = await import('@/lib/db');
+    const db = getDb();
+    const stmt = db.prepare(`
+      INSERT INTO suggestions (first_name, last_name, phone, email, where_found, source_link)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `);
+    stmt.run(firstName, lastName, phone, email, whereFound, sourceLink);
 
-    if (error) {
-      console.error('Supabase error:', error);
-      return NextResponse.json({ error: 'supabase insert failed', details: error }, { status: 500 });
-    }
-
-    return NextResponse.json({ success: true, data }, { status: 201 });
-
+    return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
     console.error('Error:', err);
     return NextResponse.json({ error: 'Internal server error.' }, { status: 500 });
