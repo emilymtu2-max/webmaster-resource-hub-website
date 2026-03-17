@@ -586,9 +586,9 @@ export default function ResourcesPage() {
 
         {/* Type Filter */}
         <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center gap-2">
-            <SlidersHorizontal className="h-5 w-5 text-white" />
-            <h3 className="font-semibold text-lg text-white">Types</h3>
+          <div className="flex items-center gap-2 text-white">
+            <SlidersHorizontal className="h-5 w-5" />
+            <h3 className="font-semibold text-lg">Types</h3>
           </div>
           <div className="flex flex-wrap justify-center gap-2">
             {types.map((type) => {
