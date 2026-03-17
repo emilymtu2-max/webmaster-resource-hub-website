@@ -40,9 +40,3 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Internal server error.' }, { status: 500 });
   }
 }
-```
-
-Also update your `.env.local` to match:
-```
-next_public_supabase_url=https://kxdldhlozbdschlbuxhi.supabase.co
-next_public_supabase_anon_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4ZGxkaGxvemJkc2NobGJ1eGhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MDg5NDIsImV4cCI6MjA4OTI4NDk0Mn0.uLj95kyz654RDj9ZSmJKo9GFSLowb_bthwOWTuoU_bM
