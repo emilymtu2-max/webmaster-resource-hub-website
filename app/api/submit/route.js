@@ -1,23 +1,13 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.next_public_supabase_url;
-const supabaseKey = process.env.next_public_supabase_anon_key;
+const supabaseUrl = process.env.next_public_supabase_url || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.next_public_supabase_anon_key || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export async function GET() {
-  return NextResponse.json({
-    url: supabaseUrl ? 'exists' : 'MISSING',
-    key: supabaseKey ? 'exists' : 'MISSING',
-  });
-}
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(request) {
   try {
-    if (!supabaseUrl || !supabaseKey) {
-      return NextResponse.json({ error: 'Missing env variables' }, { status: 500 });
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseKey);
     const body = await request.json();
     const { firstName, lastName, phone, email, whereFound, sourceLink } = body;
 
