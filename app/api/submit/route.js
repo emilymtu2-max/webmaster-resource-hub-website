@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getDb } from '@/lib/db';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export async function POST(request) {
   try {
@@ -13,17 +18,25 @@ export async function POST(request) {
       );
     }
 
-    const db = getDb();
-    const stmt = db.prepare(`
-      INSERT INTO suggestions (first_name, last_name, phone, email, where_found, source_link)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `);
-    const result = stmt.run(firstName, lastName, phone, email, whereFound, sourceLink);
+    const { error } = await supabase
+      .from('suggestions')
+      .insert([{
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone,
+        email: email,
+        where_found: whereFound,
+        source_link: sourceLink,
+      }]);
 
-    return NextResponse.json({ success: true, id: result.lastInsertRowid }, { status: 201 });
+    if (error) {
+      console.error('Supabase error:', error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
-    console.error('DB error:', err);
+    console.error('Error:', err);
     return NextResponse.json({ error: 'Internal server error.' }, { status: 500 });
   }
-  
 }
