@@ -12,7 +12,7 @@ type StatItem = {
 
 const AboutUs = ({ stats }: { stats: StatItem }) => {
   return (
-    <section className="bg-white py-8 sm:py-16 lg:py-24">
+    <section className="bg-[#FDF6EC] py-8 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center md:mb-16 lg:mb-24">
           <h2 className="text-4xl font-bold tracking-tight text-red-900 md:text-5xl lg:text-6xl">
@@ -49,7 +49,7 @@ const AboutUs = ({ stats }: { stats: StatItem }) => {
             className="h-full max-h-[30rem] w-full rounded-lg object-cover"
           />
 
-          <div className="bg-base-100 grid gap-10 rounded-md border border-red-900 p-8 sm:max-lg:grid-cols-2 lg:absolute lg:-bottom-25 lg:left-1/2 lg:w-3/4 lg:-translate-x-1/2 lg:grid-cols-4 lg:px-10 xl:w-max">
+          <div className="bg-white grid gap-10 rounded-md border border-red-900 p-8 sm:max-lg:grid-cols-2 lg:absolute lg:-bottom-25 lg:left-1/2 lg:w-3/4 lg:-translate-x-1/2 lg:grid-cols-4 lg:px-10 xl:w-max">
             {stats.map((stat, index) => (
               <div key={index} className="flex flex-col items-center justify-center gap-2.5 text-center">
                 <div className="flex size-7 items-center justify-center text-red-900 [&>svg]:size-7">

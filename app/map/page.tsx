@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import LeafletMapInner from "../../components/LeafletMapInner";
+import dynamic from "next/dynamic";
+
+const LeafletMapInner = dynamic(
+  () => import("../../components/LeafletMapInner"),
+  { ssr: false }
+);
 
 const locations = [
   {
