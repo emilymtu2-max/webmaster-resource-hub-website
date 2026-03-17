@@ -77,7 +77,7 @@ export default function HighlightedResourcesPage() {
 
       <section className="pb-8">
         <div className="mx-auto w-full max-w-[92rem] px-4 md:px-8 lg:px-10">
-          <ul className="list rounded-box bg-base-100 shadow-md">
+          <ul className="list rounded-box bg-white shadow-md">
             <li className="p-4 pb-2 text-xs tracking-wide opacity-60">
               Top Three Resources
             </li>

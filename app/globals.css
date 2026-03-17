@@ -129,7 +129,27 @@ body {
     @apply border-base-300;
   }
   body {
-    @apply bg-base-100 text-base-content;
+    background-color: #FDF6EC;
+    @apply text-base-content;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 6px rgba(124, 40, 20, 0.16);
+    color: #7e1d1d;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-transform: uppercase;
+    font-family: "Geist Sans", Arial, Helvetica, sans-serif;
   }
 }
 

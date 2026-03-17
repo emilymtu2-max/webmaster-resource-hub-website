@@ -114,7 +114,7 @@ interface Timeline9Props {
 
 const Timeline9 = ({ className }: Timeline9Props) => {
   return (
-    <section id="our-story" className={cn("bg-white py-24 md:py-28", className)}>
+    <section id="our-story" className={cn("bg-[#FDF6EC] py-24 md:py-28", className)}>
       <div className="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
         <div className="mb-10 grid w-full grid-cols-[1fr_minmax(0,32rem)_1fr] items-center gap-6">
           <div className="flex justify-center lg:justify-start">
@@ -151,7 +151,7 @@ const Timeline9 = ({ className }: Timeline9Props) => {
                 {entry.date}
               </h5>
 
-              <Card className="my-5 border-2 border-red-900 bg-base-100 shadow-none">
+              <Card className="my-5 border-2 border-red-900 bg-white shadow-none">
                 <CardContent className="px-6 py-6 xl:px-8">
                   <div className="text-base leading-relaxed text-red-950/85 md:text-lg">
                     {entry.content}
@@ -168,13 +168,13 @@ const Timeline9 = ({ className }: Timeline9Props) => {
 
 export default function AboutUs() {
   return (
-    <div className="bg-white">
+    <div className="bg-[#FDF6EC]">
       {/* About Us */}
       <AboutHeroBlock stats={aboutStats} />
 
       <Timeline9 />
 
-      <main className="page-container bg-white">
+      <main className="page-container bg-transparent">
         <section className="mt-12">
           <div className="mx-auto max-w-[92rem]">
             <div className="grid w-full grid-cols-[1fr_minmax(0,36rem)_1fr] items-center gap-6">
@@ -204,7 +204,7 @@ export default function AboutUs() {
             const Icon = value.icon;
 
             return (
-            <Card key={value.title} className="h-full border-red-900/20 py-0 shadow-md">
+            <Card key={value.title} className="h-full border-red-900/20 bg-white py-0 shadow-md">
               <CardContent className="flex h-full flex-col gap-6 p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex size-16 items-center justify-center rounded-2xl border border-dashed border-red-900/35 bg-red-50 text-red-900">

@@ -312,7 +312,7 @@ export default function Home() {
         <div className="hero-overlay bg-slate-950/45"></div>
         <div className="hero-content w-full max-w-none px-4 py-16 text-neutral-content md:px-8 lg:px-10">
           <div className="w-full max-w-[92rem]">
-            <h2 className="max-w-5xl text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+            <h2 className="max-w-5xl text-5xl font-bold leading-tight md:text-6xl lg:text-7xl  text-white/85">
               Your Knowledge is
               <span className="inline-block align-baseline text-amber-100">
                 <FlipWords
