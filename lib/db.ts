@@ -1,47 +1,35 @@
-import Database from "better-sqlite3";
-import { mkdirSync } from "node:fs";
-import path from "node:path";
+import { createClient } from "@supabase/supabase-js";
 import { capitalizeFirstLetter } from "@/lib/text";
 
-const DATA_DIR = path.resolve(process.cwd(), "data");
-mkdirSync(DATA_DIR, { recursive: true });
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.SUPABASE_SERVICE_KEY ||
+  process.env.SUPABASE_SECRET_KEY;
 
-const DB_PATH = path.join(DATA_DIR, "users.db");
-const db = new Database(DB_PATH);
-
-db.pragma("journal_mode = WAL");
-db.exec(`
-  CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL UNIQUE,
-    passwordHash TEXT NOT NULL,
-    firstName TEXT NOT NULL,
-    country TEXT NOT NULL,
-    interests TEXT,
-    profileImage TEXT
-  );
-`);
-
-const columns = (db.prepare("PRAGMA table_info(users)") as any).all();
-if (!columns.some((col: any) => col.name === "profileImage")) {
-  db.exec("ALTER TABLE users ADD COLUMN profileImage TEXT;");
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error("Missing Supabase URL/Service Role key in environment");
 }
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS suggestions (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  first_name TEXT NOT NULL,
-  last_name TEXT NOT NULL,
-  phone TEXT,
-  email TEXT NOT NULL,
-  where_found TEXT,
-  source_link TEXT,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
-`);
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: { persistSession: false, detectSessionInUrl: false },
+});
 
-type UserRow = {
-  id: number;
+const USER_SELECT =
+  "id, email, password_hash, first_name, country, interests, profile_image";
+
+type SupabaseUserRow = {
+  id: string;
+  email: string;
+  password_hash: string;
+  first_name: string;
+  country: string;
+  interests: string | null;
+  profile_image: string | null;
+};
+
+export type StoredUser = {
+  id: string;
   email: string;
   passwordHash: string;
   firstName: string;
@@ -50,81 +38,103 @@ type UserRow = {
   profileImage: string | null;
 };
 
-const insertUser = db.prepare(
-  "INSERT INTO users (email, passwordHash, firstName, country, interests) VALUES (?, ?, ?, ?, ?)"
-);
-
-const findUserByEmailStmt = db.prepare<UserRow>(
-  "SELECT id, email, passwordHash, firstName, country, interests FROM users WHERE email = ?"
-);
-
-export type StoredUser = UserRow;
-
-export function getDb() {
-  return db;
+function mapRow(row: SupabaseUserRow): StoredUser {
+  return {
+    id: row.id,
+    email: row.email,
+    passwordHash: row.password_hash,
+    firstName: row.first_name,
+    country: row.country,
+    interests: row.interests ?? null,
+    profileImage: row.profile_image ?? null,
+  };
 }
 
-export function createUser(input: {
+export async function createUser(input: {
   email: string;
   passwordHash: string;
   firstName: string;
   country: string;
   interests?: string | null;
   profileImage?: string | null;
-}): StoredUser {
+}): Promise<StoredUser> {
   const normalizedFirstName = capitalizeFirstLetter(input.firstName);
-  const result = insertUser.run(
-    input.email,
-    input.passwordHash,
-    normalizedFirstName,
-    input.country,
-    input.interests ?? null
-  ) as { lastInsertRowid: number };
 
-  return {
-    id: Number(result.lastInsertRowid),
-    email: input.email,
-    passwordHash: input.passwordHash,
-    firstName: normalizedFirstName,
-    country: input.country,
-    interests: input.interests ?? null,
-    profileImage: input.profileImage ?? null,
-  };
+  const { data, error } = await supabase
+    .from<SupabaseUserRow>("users")
+    .insert({
+      email: input.email,
+      password_hash: input.passwordHash,
+      first_name: normalizedFirstName,
+      country: input.country,
+      interests: input.interests ?? null,
+      profile_image: input.profileImage ?? null,
+    })
+    .select(USER_SELECT)
+    .single();
+
+  if (error || !data) {
+    throw error ?? new Error("Failed to create user");
+  }
+
+  return mapRow(data);
 }
 
-export function findUserByEmail(email: string): StoredUser | undefined {
-  return findUserByEmailStmt.get(email);
+export async function findUserByEmail(email: string): Promise<StoredUser | undefined> {
+  const { data, error } = await supabase
+    .from<SupabaseUserRow>("users")
+    .select(USER_SELECT)
+    .eq("email", email)
+    .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  return data ? mapRow(data) : undefined;
 }
 
-export function findUserById(id: number): StoredUser | undefined {
-  const stmt = db.prepare<UserRow>(
-    "SELECT id, email, passwordHash, firstName, country, interests, profileImage FROM users WHERE id = ?"
-  );
-  return stmt.get(id);
+export async function findUserById(id: string): Promise<StoredUser | undefined> {
+  const { data, error } = await supabase
+    .from<SupabaseUserRow>("users")
+    .select(USER_SELECT)
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  return data ? mapRow(data) : undefined;
 }
 
-const updateProfileStmt = db.prepare(
-  "UPDATE users SET email = ?, firstName = ?, country = ?, interests = ?, profileImage = ? WHERE id = ?"
-);
-
-export function updateUserProfile(input: {
-  id: number;
+export async function updateUserProfile(input: {
+  id: string;
   email: string;
   firstName: string;
   country: string;
   interests?: string | null;
   profileImage?: string | null;
-}): StoredUser | undefined {
+}): Promise<StoredUser | undefined> {
   const normalizedEmail = String(input.email).toLowerCase();
   const normalizedFirstName = capitalizeFirstLetter(input.firstName);
-  updateProfileStmt.run(
-    normalizedEmail,
-    normalizedFirstName,
-    input.country,
-    input.interests ?? null,
-    input.profileImage ?? null,
-    input.id
-  );
 
-  return findUserById(input.id);
+  const { data, error } = await supabase
+    .from<SupabaseUserRow>("users")
+    .update({
+      email: normalizedEmail,
+      first_name: normalizedFirstName,
+      country: input.country,
+      interests: input.interests ?? null,
+      profile_image: input.profileImage ?? null,
+    })
+    .eq("id", input.id)
+    .select(USER_SELECT)
+    .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  return data ? mapRow(data) : undefined;
 }
