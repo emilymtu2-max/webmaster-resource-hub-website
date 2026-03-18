@@ -35,11 +35,21 @@ export default function RootLayout({
 
           <nav>
             <h6 className="footer-title">Categories Of Help</h6>
-            <a className="link link-hover">Legal</a>
-            <a className="link link-hover">Educational</a>
-            <a className="link link-hover">Career/Employment</a>
-            <a className="link link-hover">Culture</a>
-            <a className="link link-hover">Health/Wellness</a>
+            <Link href="/resources?category=Legal" className="link link-hover">
+              Legal
+            </Link>
+            <Link href="/resources?category=Education" className="link link-hover">
+              Educational
+            </Link>
+            <Link href="/resources?category=Career" className="link link-hover">
+              Career/Employment
+            </Link>
+            <Link href="/resources?category=Culture" className="link link-hover">
+              Culture
+            </Link>
+            <Link href="/resources?category=Health" className="link link-hover">
+              Health/Wellness
+            </Link>
           </nav>
 
           <nav>

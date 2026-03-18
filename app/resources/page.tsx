@@ -385,6 +385,7 @@ const resources = [
   link: "https://www.kwacares.org/",
 },
 
+
 // --- Culture Section (additional) ---
 {
   title: "Seattle Art Museum Lunar New Year Festival",
@@ -426,6 +427,15 @@ export default function ResourcesPage() {
 
   const categories = ["All", "Legal", "Education", "Career", "Health", "Culture"]
   const types = ["All", "Volunteer", "Counseling", "Financial Aid", "Community Programs", "Mentorship"]
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const params = new URLSearchParams(window.location.search)
+    const categoryFromUrl = params.get("category")
+    if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+      setActiveCategory(categoryFromUrl)
+    }
+  }, [categories])
 
   const categoryIconMap: Record<string, React.ElementType> = {
     All: Bookmark,
