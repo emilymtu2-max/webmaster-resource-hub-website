@@ -1,9 +1,53 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { capitalizeFirstLetter } from "@/lib/text";
 
-let supabaseClient: ReturnType<typeof createClient> | null = null;
+type SupabaseUserRow = {
+  id: string;
+  email: string;
+  password_hash: string;
+  first_name: string;
+  country: string;
+  interests: string | null;
+  profile_image: string | null;
+};
 
-function getSupabase() {
+type SupabaseUserInsert = {
+  email: string;
+  password_hash: string;
+  first_name: string;
+  country: string;
+  interests?: string | null;
+  profile_image?: string | null;
+};
+
+type SupabaseUserUpdate = {
+  email?: string;
+  first_name?: string;
+  country?: string;
+  interests?: string | null;
+  profile_image?: string | null;
+};
+
+type Database = {
+  public: {
+    Tables: {
+      users: {
+        Row: SupabaseUserRow;
+        Insert: SupabaseUserInsert;
+        Update: SupabaseUserUpdate;
+        Relationships: [];
+      };
+    };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
+  };
+};
+
+let supabaseClient: SupabaseClient<Database> | null = null;
+
+function getSupabase(): SupabaseClient<Database> {
   if (supabaseClient) {
     return supabaseClient;
   }
@@ -18,7 +62,7 @@ function getSupabase() {
     throw new Error("Missing Supabase URL/Service Role key in environment");
   }
 
-  supabaseClient = createClient(supabaseUrl, supabaseServiceRoleKey, {
+  supabaseClient = createClient<Database>(supabaseUrl, supabaseServiceRoleKey, {
     auth: { persistSession: false, detectSessionInUrl: false },
   });
 
@@ -27,16 +71,6 @@ function getSupabase() {
 
 const USER_SELECT =
   "id, email, password_hash, first_name, country, interests, profile_image";
-
-type SupabaseUserRow = {
-  id: string;
-  email: string;
-  password_hash: string;
-  first_name: string;
-  country: string;
-  interests: string | null;
-  profile_image: string | null;
-};
 
 export type StoredUser = {
   id: string;
