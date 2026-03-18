@@ -14,6 +14,7 @@ import {
   MessageCircle,
   CreditCard,
   Users,
+  Heart,
 } from "lucide-react"
 const topResources = [
   {
@@ -53,7 +54,7 @@ const topResources = [
     imageSrc: "/aboutus-culture.jpg",
   },
 ];
-// Simple HeartIcon component (inline SVG)
+//  HeartIcon component 
 const HeartIcon = ({ className = "" }: { className?: string }) => (
   <svg
     className={className}
@@ -303,15 +304,6 @@ const resources = [
   link: "https://wsbdc.org/",
 },
 {
-  title: "Greater Seattle Chinese Chamber of Commerce",
-  category: ["Career", "Volunteer", "Community Programs", "Mentorship"],
-  about:
-    "A nonprofit supporting economic growth and cultural understanding between the U.S. and China.",
-  does: "Provides networking events, advocacy, and resources for Chinese American businesses.",
-  contact: "info@seattlechinesechamber.org",
-  link: "https://www.seattlechinesechamber.org/",
-},
-{
   title: "Ventures Small Business Training",
   category: ["Career", "Volunteer", "Mentorship", "Financial Aid", "Community Programs"],
   about:
@@ -414,8 +406,241 @@ const resources = [
   does: "Hosts Asian food markets, night markets, and cultural performances.",
   contact: "Website contact form",
   link: "https://www.pandafests.com/",
-}
+},
 
+{
+  title: "Helping Link",
+  category: ["Education", "Community Programs"],
+  about: "Helping Link / Một Dấu Nối is a community organization in Renton, Washington focused on empowering Vietnamese Americans through education and social support services.",
+  does: "Provides ESL (English as a Second Language), citizenship preparation, computer education classes, cultural programming, information referrals, and community resources to help Vietnamese immigrants and refugees succeed in the U.S. and strengthen cultural connection.",
+  contact: "info@helpinglink.org",
+  link: "https://www.helpinglink.org/",
+},
+
+{
+  title: "Washington State Coalition for Language Access",
+  category: ["Education", "Legal", "Community Programs"],
+  about: "The Washington State Coalition for Language Access (WASCLA) is a statewide advocacy organization promoting equity in communication for residents with limited English proficiency and Deaf or Hard of Hearing individuals.",
+  does: "Works to eliminate language barriers to essential services by providing advocacy, technical assistance, training, collaboration with agencies, and resources like interpreter/translator directories and language access toolkits.",
+  contact: "wascla.lep@gmail.com",
+  link: "https://wascla.org/",
+},
+
+{
+  title: "Thriving Asians",
+  category: ["Education", "Mentorship", "Community Programs"],
+  about: "Thriving Asians is an organization focused on cultivating youth leadership in Asian and Asian American communities, particularly around mental health, resilience, and civic engagement.",
+  does: "Supports leadership development opportunities, mentorship, workshops, and community initiatives that empower Asian youth to advocate for mental health, equity, and well-being.",
+  contact: "info@thrivingasians.org",
+  link: "https://www.thrivingasians.org/",
+},
+
+{
+  title: "Bhutanese Community Resource Center",
+  category: ["Culture", "Community Programs"],
+  about: "Bhutanese Community Resource Center supports Bhutanese refugees in Washington by providing resettlement assistance and cultural preservation programs.",
+  does: "Offers community support, advocacy, English literacy, job readiness services, cultural events, youth engagement, and resource referrals.",
+  contact: "bcrcusa@gmail.com",
+  link: "https://www.facebook.com/bcrcusa/",
+},
+
+{
+  title: "Bainbridge Island Japanese American Community (BIJAC)",
+  category: ["Culture", "Education", "Community Programs"],
+  about: "BIJAC preserves and shares the history and culture of Japanese Americans from Bainbridge Island, with a focus on community memory and education.",
+  does: "Runs educational outreach, oral history projects, cultural events (e.g., Mochi Tsuki), and supports the Bainbridge Island Japanese American Exclusion Memorial.",
+  contact: "info@bijac.org",
+  link: "https://bijac.org/",
+},
+
+{
+  title: "Filipino Youth Activities Drill Team",
+  category: ["Culture", "Youth Programs", "Community Programs"],
+  about: "The Filipino Youth Activities (FYA) Drill Team is the only Filipino-American drill team in the U.S., based in Seattle, WA since 1959.",
+  does: "Promotes cultural heritage, discipline, and leadership through performances and community engagement.",
+  contact: "FYADrillTeam@gmail.com",
+  link: "https://www.facebook.com/FYADrillteam/",
+},
+
+{
+  title: "India American Community Services (IACS)",
+  category: ["Culture", "Community Programs"],
+  about: "IACS promotes Indian culture, social cohesion, and educational opportunities within the Indian and Indo-American community in Western Washington.",
+  does: "Hosts cultural, social, and educational programs to foster community identity and mutual understanding among diverse populations.",
+  contact: "Contactus@iaww.org",
+  link: "https://iacswa.org/",
+},
+
+{
+  title: "Hmong Association of Washington",
+  category: ["Culture", "Education", "Community Programs"],
+  about: "Hmong Association of Washington preserves Hmong culture and promotes education and community cohesion for the Hmong American community.",
+  does: "Provides cultural programming, youth and graduation events, and educational activities celebrating Hmong heritage.",
+  contact: "hmong.of.washington@gmail.com",
+  link: "https://www.hmongofwa.org/",
+},
+
+{
+  title: "Wing Luke Asian Museum",
+  category: ["Culture", "Education", "Community Programs"],
+  about: "Wing Luke Museum is a Smithsonian-affiliated art and history museum focused on Asian American, Native Hawaiian, and Pacific Islander experiences.",
+  does: "Hosts exhibitions, guided tours, public programs, and community events focused on art, history, heritage, and social equity.",
+  contact: "visit@wingluke.org",
+  link: "https://www.wingluke.org/",
+},
+
+{
+  title: "Asian Service Center",
+  category: ["Culture", "Career", "Community Programs"],
+  about: "Asian Service Center supports Asian immigrant and refugee families through services that enhance economic stability and cultural connection.",
+  does: "Offers employment support, housing assistance, and family strengthening services.",
+  contact: "Robert.Ha@AsianServiceCenterWA.org",
+  link: "https://www.asianservicecenterwa.org/",
+},
+
+{
+  title: "Greater Seattle Chinese Chamber of Commerce",
+  category: ["Career", "Mentorship", "Community Programs"],
+  about: "Supports Chinese-owned businesses in the Seattle area by promoting economic development and community engagement.",
+  does: "Provides networking events, business seminars, and advocacy to help entrepreneurs and professionals grow their careers.",
+  contact: "info@seattlechinesechamber.org",
+  link: "https://www.seattlechinesechamber.org/",
+},
+
+{
+  title: "WAPI Community Services",
+  category: ["Health", "Counseling", "Community Programs"],
+  about: "Provides culturally competent health and social services for Asian and Pacific Islander communities.",
+  does: "Offers mental health counseling, health education, and community support programs.",
+  contact: "info@wapicommunity.org",
+  link: "https://www.wapicommunity.org/",
+},
+
+{
+  title: "National Asian American Pacific Islander Mental Health Association (NAAPIMHA)",
+  category: ["Health", "Community Programs"],
+  about: "Advocates for mental health equity for Asian American and Pacific Islander communities.",
+  does: "Provides resources, policy advocacy, and community-based mental health programs.",
+  contact: "https://www.naapimha.org/contact-8",
+  link: "https://www.naapimha.org/",
+},
+
+{
+  title: "South Asian Therapists.org",
+  category: ["Health", "Counseling"],
+  about: "Connects South Asian individuals with culturally competent mental health providers.",
+  does: "Maintains a directory of therapists and offers tailored mental health resources.",
+  contact: "info@southasiantherapists.org",
+  link: "https://southasiantherapists.org/",
+},
+
+{
+  title: "Filipino Mental Health Initiative of Hawaii",
+  category: ["Health", "Community Programs"],
+  about: "Focuses on raising awareness and providing support for mental health in the Filipino community.",
+  does: "Offers educational workshops, community events, and outreach on mental health topics.",
+  contact: "Instagram: @fmhi_hawaii",
+  link: "https://www.instagram.com/fmhi_hawaii/",
+},
+
+{
+  title: "Anise Health",
+  category: ["Health", "Counseling"],
+  about: "Provides accessible mental health care for Asian American communities.",
+  does: "Offers online therapy, counseling, and culturally sensitive mental health resources.",
+  contact: "info@anisehealth.co",
+  link: "https://www.anisehealth.co/",
+},
+
+{
+  title: "Pacific Asian Counseling Services",
+  category: ["Health", "Counseling", "Community Programs"],
+  about: "Provides mental health services to Asian and Pacific Islander communities in Los Angeles.",
+  does: "Offers counseling, therapy, and community support programs.",
+  contact: "info@pacsla.org",
+  link: "https://pacsla.org/",
+},
+
+{
+  title: "South Asian Public Health Association",
+  category: ["Health", "Community Programs"],
+  about: "Promotes public health awareness and research within South Asian communities.",
+  does: "Provides networking, advocacy, and public health resources.",
+  contact: "https://sapha.org/contact/",
+  link: "https://sapha.org/",
+},
+
+{
+  title: "Asian Mental Health Project",
+  category: ["Health", "Community Programs"],
+  about: "Raises awareness about mental health in Asian communities through education and advocacy.",
+  does: "Provides resources, workshops, and campaigns to reduce stigma.",
+  contact: "Instagram link",
+  link: "https://www.asianmentalhealthproject.com/",
+},
+
+{
+  title: "Yellow Chair Collective",
+  category: ["Health", "Counseling"],
+  about: "Provides mental health counseling with an emphasis on Asian American communities.",
+  does: "Offers therapy, wellness workshops, and support services.",
+  contact: "info@yellowchaircollective.com",
+  link: "https://yellowchaircollective.com/",
+},
+
+{
+  title: "Asian Mental Health Collective",
+  category: ["Health", "Community Programs"],
+  about: "Supports Asian American mental health through community engagement and education.",
+  does: "Provides resources, workshops, and professional networking.",
+  contact: "Contact form",
+  link: "https://www.asianmhc.org/",
+},
+
+{
+  title: "Asian American Federation",
+  category: ["Health", "Community Programs"],
+  about: "Works to improve health outcomes and social services for Asian American communities.",
+  does: "Provides mental health resources and supports community programs.",
+  contact: "info@aafederation.org",
+  link: "https://mentalhealth.aafederation.org/#resourcesForProviders",
+},
+
+{
+  title: "Mango Tree Counseling & Consulting",
+  category: ["Health", "Counseling"],
+  about: "Provides culturally competent mental health services for South Asian communities.",
+  does: "Offers counseling, workshops, and consulting services.",
+  contact: "associate@mangotreecc.com",
+  link: "https://mangotreecc.com/",
+},
+
+{
+  title: "Mental Health Association for Chinese Communities",
+  category: ["Health", "Counseling", "Community Programs"],
+  about: "Provides mental health services and advocacy for Chinese communities.",
+  does: "Offers counseling, outreach, and educational programs.",
+  contact: "info@mhacc-usa.org",
+  link: "https://www.mhacc-usa.org/",
+},
+
+{
+  title: "NAPAFASA",
+  category: ["Health", "Community Programs"],
+  about: "Promotes substance awareness and harm reduction in Asian Pacific American families.",
+  does: "Provides education, resources, and support to reduce substance-related harm.",
+  contact: "hello@napafasa.org",
+  link: "https://napafasa.org/",
+},
+
+{
+  title: "Asian & Pacific Islander American Health Forum",
+  category: ["Health", "Community Programs"],
+  about: "A national nonprofit advancing health equity for Asian American, Native Hawaiian, and Pacific Islander communities.",
+  does: "Engages in policy advocacy, research, and partnerships to improve health outcomes.",
+  contact: "info@apiahf.org",
+  link: "https://www.apiahf.org/",
+},
 ];
 
 
@@ -425,7 +650,7 @@ export default function ResourcesPage() {
   const [activeType, setActiveType] = useState("All")
   const [favorites, setFavorites] = useState<string[]>([])
 
-  const categories = ["All", "Legal", "Education", "Career", "Health", "Culture"]
+  const categories = ["All", "Legal", "Education", "Career", "Health", "Culture", "Liked"]
   const types = ["All", "Volunteer", "Counseling", "Financial Aid", "Community Programs", "Mentorship"]
 
   useEffect(() => {
@@ -444,6 +669,8 @@ export default function ResourcesPage() {
     Career: Briefcase,
     Health: HeartPulse,
     Culture: Globe,
+    Liked: Heart,
+
   }
 
   const typeIconMap: Record<string, React.ElementType> = {
@@ -496,10 +723,17 @@ export default function ResourcesPage() {
 
     if (!matchesSearch) return false
 
-    const matchesCategory = activeCategory === "All" || r.category.includes(activeCategory)
-    const matchesType = activeType === "All" || r.category.includes(activeType)
+      const matchesCategory =
+      activeCategory === "All"
+      ? true
+      : activeCategory === "Liked"
+      ? favoriteSet.has(r.title)
+      : r.category.includes(activeCategory)
 
-    return matchesCategory && matchesType
+      const matchesType =
+      activeType === "All" || r.category.includes(activeType)
+
+      return matchesCategory && matchesType
   })
 
   return (
@@ -596,9 +830,9 @@ export default function ResourcesPage() {
 
         {/* Type Filter */}
         <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center gap-2 text-white">
-            <SlidersHorizontal className="h-5 w-5" />
-            <h3 className="font-semibold text-lg">Types</h3>
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal className="h-5 w-5 text-white" />
+            <h3 className="font-semibold text-lg text-white">Types</h3>
           </div>
           <div className="flex flex-wrap justify-center gap-2">
             {types.map((type) => {
