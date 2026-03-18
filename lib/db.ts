@@ -61,7 +61,7 @@ export async function createUser(input: {
   const normalizedFirstName = capitalizeFirstLetter(input.firstName);
 
   const { data, error } = await supabase
-    .from<SupabaseUserRow>("users")
+    .from("users")
     .insert({
       email: input.email,
       password_hash: input.passwordHash,
@@ -82,7 +82,7 @@ export async function createUser(input: {
 
 export async function findUserByEmail(email: string): Promise<StoredUser | undefined> {
   const { data, error } = await supabase
-    .from<SupabaseUserRow>("users")
+    .from("users")
     .select(USER_SELECT)
     .eq("email", email)
     .maybeSingle();
@@ -96,7 +96,7 @@ export async function findUserByEmail(email: string): Promise<StoredUser | undef
 
 export async function findUserById(id: string): Promise<StoredUser | undefined> {
   const { data, error } = await supabase
-    .from<SupabaseUserRow>("users")
+    .from("users")
     .select(USER_SELECT)
     .eq("id", id)
     .maybeSingle();
@@ -120,7 +120,7 @@ export async function updateUserProfile(input: {
   const normalizedFirstName = capitalizeFirstLetter(input.firstName);
 
   const { data, error } = await supabase
-    .from<SupabaseUserRow>("users")
+    .from("users")
     .update({
       email: normalizedEmail,
       first_name: normalizedFirstName,
