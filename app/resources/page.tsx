@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
 import {
   Search,
   SlidersHorizontal,
@@ -420,7 +419,6 @@ const resources = [
 
 
 export default function ResourcesPage() {
-  const searchParams = useSearchParams()
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState("All")
   const [activeType, setActiveType] = useState("All")
@@ -430,11 +428,13 @@ export default function ResourcesPage() {
   const types = ["All", "Volunteer", "Counseling", "Financial Aid", "Community Programs", "Mentorship"]
 
   useEffect(() => {
-    const categoryFromUrl = searchParams.get("category")
+    if (typeof window === "undefined") return
+    const params = new URLSearchParams(window.location.search)
+    const categoryFromUrl = params.get("category")
     if (categoryFromUrl && categories.includes(categoryFromUrl)) {
       setActiveCategory(categoryFromUrl)
     }
-  }, [searchParams, categories])
+  }, [categories])
 
   const categoryIconMap: Record<string, React.ElementType> = {
     All: Bookmark,
