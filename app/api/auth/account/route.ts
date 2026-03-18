@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { findUserByEmail, findUserById, updateUserProfile } from "@/lib/db";
 
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   const { id, email, firstName, country, interests, profileImage } = await req.json();
 

@@ -47,19 +47,63 @@ type Database = {
 
 let supabaseClient: SupabaseClient<Database> | null = null;
 
+function hasEnv(key: string): boolean {
+  const value = process.env[key];
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function readFirstEnv(keys: string[]): string | undefined {
+  for (const key of keys) {
+    const value = process.env[key];
+    if (typeof value === "string" && value.trim().length > 0) {
+      return value.trim();
+    }
+  }
+  return undefined;
+}
+
 function getSupabase(): SupabaseClient<Database> {
   if (supabaseClient) {
     return supabaseClient;
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseServiceRoleKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_SERVICE_KEY ||
-    process.env.SUPABASE_SECRET_KEY;
+  console.log("[db] Supabase env presence", {
+    nodeEnv: process.env.NODE_ENV ?? null,
+    vercelEnv: process.env.VERCEL_ENV ?? null,
+    vercelRegion: process.env.VERCEL_REGION ?? null,
+    SUPABASE_URL: hasEnv("SUPABASE_URL"),
+    NEXT_PUBLIC_SUPABASE_URL: hasEnv("NEXT_PUBLIC_SUPABASE_URL"),
+    next_public_supabase_url: hasEnv("next_public_supabase_url"),
+    SUPABASE_SERVICE_ROLE_KEY: hasEnv("SUPABASE_SERVICE_ROLE_KEY"),
+    SUPABASE_SERVICE_ROLE: hasEnv("SUPABASE_SERVICE_ROLE"),
+    SUPABASE_SERVICE_KEY: hasEnv("SUPABASE_SERVICE_KEY"),
+    SUPABASE_SECRET_KEY: hasEnv("SUPABASE_SECRET_KEY"),
+    SUPABASE_KEY: hasEnv("SUPABASE_KEY"),
+    SUPABASE_ANON_KEY: hasEnv("SUPABASE_ANON_KEY"),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: hasEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
+    next_public_supabase_anon_key: hasEnv("next_public_supabase_anon_key"),
+  });
+
+  const supabaseUrl = readFirstEnv([
+    "SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "next_public_supabase_url",
+  ]);
+  const supabaseServiceRoleKey = readFirstEnv([
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_SERVICE_ROLE",
+    "SUPABASE_SERVICE_KEY",
+    "SUPABASE_SECRET_KEY",
+    "SUPABASE_KEY",
+    "SUPABASE_ANON_KEY",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "next_public_supabase_anon_key",
+  ]);
 
   if (!supabaseUrl || !supabaseServiceRoleKey) {
-    throw new Error("Missing Supabase URL/Service Role key in environment");
+    throw new Error(
+      "Missing Supabase credentials in environment. Expected SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or configured alias)."
+    );
   }
 
   supabaseClient = createClient<Database>(supabaseUrl, supabaseServiceRoleKey, {

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { hashPassword } from "@/lib/hash";
 import { createUser, findUserByEmail } from "@/lib/db";
 
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   const { email, password, firstName, country, interests, profileImage } = await req.json();
 

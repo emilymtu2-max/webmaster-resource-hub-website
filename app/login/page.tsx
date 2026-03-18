@@ -11,6 +11,16 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  async function parseJsonSafely(response: Response) {
+    const text = await response.text();
+    if (!text) return {};
+    try {
+      return JSON.parse(text) as Record<string, any>;
+    } catch {
+      return {};
+    }
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
@@ -22,7 +32,7 @@ export default function Login() {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json();
+    const data = await parseJsonSafely(response);
 
     setLoading(false);
 
