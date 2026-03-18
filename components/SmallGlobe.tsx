@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { useRef, useEffect, useState } from "react";
-import * as THREE from "three";
 
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
@@ -26,15 +25,14 @@ type SmallGlobeProps = {
 export default function SmallGlobe({
   showCaption = true,
   className = "",
-  width = 600,
-  height = 400,
+  width = 700,
+  height = 500,
   markers = [],
   autoRotate = true,
 }: SmallGlobeProps) {
   const globeRef = useRef<any>(null);
   const [countries, setCountries] = useState<any[]>([]);
 
-  // Load GeoJSON countries (ready-to-use)
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"
@@ -43,18 +41,16 @@ export default function SmallGlobe({
       .then((geo) => setCountries(geo.features));
   }, []);
 
-  // Auto-rotate globe
   useEffect(() => {
     if (globeRef.current && autoRotate) {
       const controls = globeRef.current.controls();
       controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.7;
-      controls.enableZoom = true;
+      controls.autoRotateSpeed = 1.2;
+      controls.enableZoom = false;
       controls.enablePan = false;
     }
-  }, [autoRotate]);
+  }, [autoRotate, countries]);
 
-  // List of major Asian countries to highlight
   const asiaCountries = [
     "China",
     "India",
@@ -75,8 +71,21 @@ export default function SmallGlobe({
   ];
 
   return (
-    <div className={`mx-auto w-full max-w-4xl ${className}`}>
-      <div style={{ width: width, height: height }}>
+    <div className={`flex flex-col items-end ${className}`}>
+      {/* Globe wrapper — slightly overflow to feel large and bold */}
+      <div
+        className="relative"
+        style={{ width, height }}
+      >
+        {/* Soft glow halo behind the globe */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(220,60,60,0.13) 0%, transparent 70%)",
+            transform: "scale(1.08)",
+          }}
+        />
         <Globe
           ref={globeRef}
           width={width}
@@ -85,6 +94,8 @@ export default function SmallGlobe({
           globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
           bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
           showAtmosphere={true}
+          atmosphereColor="rgba(200,80,80,0.35)"
+          atmosphereAltitude={0.18}
           pointsData={markers}
           pointLat="lat"
           pointLng="lng"
@@ -95,18 +106,25 @@ export default function SmallGlobe({
           polygonsData={countries}
           polygonCapColor={(d: any) =>
             asiaCountries.includes(d.properties.name)
-              ? "rgba(255, 80, 80, 0.85)" // 🔴 Asia
-              : "rgba(120, 120, 120, 0.2)" // 🌑 rest
+              ? "rgba(220, 60, 60, 0.82)"
+              : "rgba(200, 220, 110, 0.18)"
           }
           polygonSideColor={() => "rgba(0,0,0,0.05)"}
           polygonStrokeColor={() => "#111"}
         />
       </div>
 
+      {/* Interactive badge */}
       {showCaption && (
-        <p className="mt-6 text-center text-lg text-base-content/70">
-          Explore global connections and resources interactively.
-        </p>
+        <div className="mt-4 flex items-center gap-2 self-center">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500" />
+          </span>
+          <p className="text-base font-medium text-base-content/60 tracking-wide">
+            Interactive globe — click and drag to explore
+          </p>
+        </div>
       )}
     </div>
   );

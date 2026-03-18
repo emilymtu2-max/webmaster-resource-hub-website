@@ -143,27 +143,52 @@ export default function Home() {
         </div>
       </div>
       
-      <section className="py-28 bg-base-100">
-        <div className="mx-auto max-w-[92rem] px-4 md:px-8 lg:px-10 text-center">
-
-          <h2 className="text-5xl font-bold md:text-6xl">
-            Our Community Around the World
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-xl text-base-content/70 md:text-2xl">
-            Asian communities across the world contribute culture, innovation,
-            and connection. PulseAsia helps link these communities with
-            resources throughout the Pacific Northwest.
-          </p>
-
-          <div className="mt-16 flex justify-center">
-            <SmallGlobe
-              width={650}
-              height={450}
-              autoRotate={true}
-            />
+      <section className="py-28 bg-base-100 overflow-hidden">
+        <div className="mx-auto max-w-[92rem] px-4 md:px-8 lg:px-10">
+      
+          {/* Two-column layout: quote left, globe right */}
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-0">
+      
+            {/* ── Left: quote + sub-text ── */}
+            <div className="flex-1 lg:pr-16">
+              {/* decorative quotation mark */}
+              <span
+                aria-hidden="true"
+                className="block font-serif text-[7rem] leading-none text-red-800/20 select-none -mb-6"
+              >
+                &ldquo;
+              </span>
+      
+              <blockquote className="text-4xl font-bold leading-snug text-base-content md:text-5xl lg:text-[3.25rem]">
+                Across every continent, Asian hands have{" "}
+                <span className="text-red-800">built, healed, taught,</span> and
+                inspired — and it is our turn to give back.
+              </blockquote>
+      
+              <p className="mt-8 text-xl leading-relaxed text-base-content/65 md:text-2xl max-w-xl">
+                Asian communities have shaped science, art, culture, and commerce
+                across the globe. PulseAsia exists to honor that legacy by
+                connecting Asian migrants in the Pacific Northwest with the
+                resources, community, and dignity they deserve.
+              </p>
+      
+              <div className="mt-10 h-1 w-20 rounded-full bg-red-800/60" />
+              <p className="mt-4 text-base font-semibold uppercase tracking-widest text-red-800/70">
+                PulseAsia &mdash; Pacific Northwest
+              </p>
+            </div>
+      
+            {/* ── Right: globe, anchored to the right edge ── */}
+            <div className="w-full lg:w-auto lg:flex-shrink-0 flex justify-center lg:justify-end lg:-mr-10 xl:-mr-20">
+              <SmallGlobe
+                width={720}
+                height={520}
+                autoRotate={true}
+                showCaption={true}
+              />
+            </div>
+      
           </div>
-
         </div>
       </section>
 
