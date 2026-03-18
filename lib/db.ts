@@ -1,19 +1,29 @@
 import { createClient } from "@supabase/supabase-js";
 import { capitalizeFirstLetter } from "@/lib/text";
 
-const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.SUPABASE_SERVICE_KEY ||
-  process.env.SUPABASE_SECRET_KEY;
+let supabaseClient: ReturnType<typeof createClient> | null = null;
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  throw new Error("Missing Supabase URL/Service Role key in environment");
+function getSupabase() {
+  if (supabaseClient) {
+    return supabaseClient;
+  }
+
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseServiceRoleKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SERVICE_KEY ||
+    process.env.SUPABASE_SECRET_KEY;
+
+  if (!supabaseUrl || !supabaseServiceRoleKey) {
+    throw new Error("Missing Supabase URL/Service Role key in environment");
+  }
+
+  supabaseClient = createClient(supabaseUrl, supabaseServiceRoleKey, {
+    auth: { persistSession: false, detectSessionInUrl: false },
+  });
+
+  return supabaseClient;
 }
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-  auth: { persistSession: false, detectSessionInUrl: false },
-});
 
 const USER_SELECT =
   "id, email, password_hash, first_name, country, interests, profile_image";
@@ -58,6 +68,7 @@ export async function createUser(input: {
   interests?: string | null;
   profileImage?: string | null;
 }): Promise<StoredUser> {
+  const supabase = getSupabase();
   const normalizedFirstName = capitalizeFirstLetter(input.firstName);
 
   const { data, error } = await supabase
@@ -81,6 +92,7 @@ export async function createUser(input: {
 }
 
 export async function findUserByEmail(email: string): Promise<StoredUser | undefined> {
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from("users")
     .select(USER_SELECT)
@@ -95,6 +107,7 @@ export async function findUserByEmail(email: string): Promise<StoredUser | undef
 }
 
 export async function findUserById(id: string): Promise<StoredUser | undefined> {
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from("users")
     .select(USER_SELECT)
@@ -116,6 +129,7 @@ export async function updateUserProfile(input: {
   interests?: string | null;
   profileImage?: string | null;
 }): Promise<StoredUser | undefined> {
+  const supabase = getSupabase();
   const normalizedEmail = String(input.email).toLowerCase();
   const normalizedFirstName = capitalizeFirstLetter(input.firstName);
 
