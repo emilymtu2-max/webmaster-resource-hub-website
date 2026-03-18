@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { saveSession, SessionUser } from "@/lib/session";
+import { buildSiteUrl } from "@/lib/site-url";
 
 export default function Login() {
   const router = useRouter();
@@ -27,7 +28,12 @@ export default function Login() {
 
     if (response.ok && data.success && data.user) {
       saveSession(data.user as SessionUser);
-      router.push("/account");
+      const destination = buildSiteUrl("/account");
+      if (typeof window !== "undefined") {
+        window.location.assign(destination);
+      } else {
+        router.push("/account");
+      }
       return;
     }
 
