@@ -1,6 +1,8 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { capitalizeFirstLetter } from "@/lib/text";
 
+export const runtime = "nodejs";
+
 type SupabaseUserRow = {
   id: string;
   email: string;
@@ -45,8 +47,6 @@ type Database = {
   };
 };
 
-let supabaseClient: SupabaseClient<Database> | null = null;
-
 function hasEnv(key: string): boolean {
   const value = process.env[key];
   return typeof value === "string" && value.trim().length > 0;
@@ -63,10 +63,6 @@ function readFirstEnv(keys: string[]): string | undefined {
 }
 
 function getSupabase(): SupabaseClient<Database> {
-  if (supabaseClient) {
-    return supabaseClient;
-  }
-
   console.log("[db] Supabase env presence", {
     nodeEnv: process.env.NODE_ENV ?? null,
     vercelEnv: process.env.VERCEL_ENV ?? null,
@@ -106,11 +102,9 @@ function getSupabase(): SupabaseClient<Database> {
     );
   }
 
-  supabaseClient = createClient<Database>(supabaseUrl, supabaseServiceRoleKey, {
+  return createClient<Database>(supabaseUrl, supabaseServiceRoleKey, {
     auth: { persistSession: false, detectSessionInUrl: false },
   });
-
-  return supabaseClient;
 }
 
 const USER_SELECT =
