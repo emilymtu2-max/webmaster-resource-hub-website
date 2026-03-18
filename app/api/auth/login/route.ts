@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   }
 
   const normalizedEmail = String(email).toLowerCase();
-  const user = findUserByEmail(normalizedEmail);
+  const user = await findUserByEmail(normalizedEmail);
   if (!user) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }

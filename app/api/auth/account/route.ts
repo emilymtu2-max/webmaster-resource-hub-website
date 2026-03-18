@@ -8,29 +8,33 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const existing = findUserById(Number(id));
+  const existing = await findUserById(id);
   if (!existing) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
   const normalizedEmail = String(email).toLowerCase();
-  const emailOwner = findUserByEmail(normalizedEmail);
-  if (emailOwner && emailOwner.id !== Number(id)) {
+  const emailOwner = await findUserByEmail(normalizedEmail);
+  if (emailOwner && emailOwner.id !== id) {
     return NextResponse.json({ error: "Email already in use" }, { status: 409 });
   }
 
-  const updated = updateUserProfile({
-    id: Number(id),
-    email: normalizedEmail,
-    firstName: String(firstName),
-    country: String(country),
-    interests: interests ? String(interests) : null,
-    profileImage: profileImage ?? null,
-  });
+  try {
+    const updated = await updateUserProfile({
+      id,
+      email: normalizedEmail,
+      firstName: String(firstName),
+      country: String(country),
+      interests: interests ? String(interests) : null,
+      profileImage: profileImage ?? null,
+    });
 
-  if (!updated) {
-    return NextResponse.json({ error: "Failed to update profile" }, { status: 500 });
+    if (!updated) {
+      return NextResponse.json({ error: "Failed to update profile" }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, user: updated }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error?.message ?? "Unable to update profile" }, { status: 500 });
   }
-
-  return NextResponse.json({ success: true, user: updated }, { status: 200 });
 }
