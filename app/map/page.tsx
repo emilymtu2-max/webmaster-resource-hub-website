@@ -220,13 +220,6 @@ lat: 47.5776,
 lng: -122.1526,
 },
 {
-name: "Greater Seattle Chinese Chamber of Commerce",
-category: "Career",
-address: "675 S King St, Seattle, WA 98104",
-lat: 47.5984,
-lng: -122.3230,
-},
-{
 name: "Ventures Small Business Training",
 category: "Career",
 address: "2100 24th Ave S, Seattle, WA 98144",
@@ -282,6 +275,187 @@ address: "3625 Perkins Lane SW, Lakewood, WA",
 lat: 47.1719,
 lng: -122.5180,
 },
+{
+  name: "Helping Link",
+  category: "Education",
+  address: "555 S Renton Village Pl #225, Renton, WA 98057",
+  lat: 47.46934,
+  lng: -122.21239,
+},
+
+{
+  name: "Washington State Coalition for Language Access (WASCLA)",
+  category: "Education",
+  address: "1037 NE 65th St. #262, Seattle WA 98115",
+  lat: 47.67686,
+  lng: -122.31658,
+},
+
+{
+  name: "Thriving Asians",
+  category: "Education",
+  address: "New York, USA",
+  lat: 40.7128,
+  lng: -74.0060,
+},
+{
+  name: "Bhutanese Community Resource Center",
+  category: "Culture",
+  address: "21400 International Blvd, Suite 302, SeaTac, WA 98198",
+  lat: 47.41077,
+  lng: -122.29661,
+},
+
+{
+  name: "Bainbridge Island Japanese American Community (BIJAC)",
+  category: "Culture",
+  address: "1298 Grow Ave NW, Bainbridge Island, WA 98110",
+  lat: 47.63444,
+  lng: -122.52463,
+},
+
+{
+  name: "Filipino Youth Activities Drill Team",
+  category: "Culture",
+  address: "305 Harrison Street, Seattle, WA 98109",
+  lat: 47.62154,
+  lng: -122.35165,
+},
+
+{
+  name: "India American Community Services (IACS)",
+  category: "Culture",
+  address: "PO Box 404, Bellevue, WA 98009-0404",
+  lat: 47.61015,
+  lng: -122.20152,
+},
+
+{
+  name: "Hmong Association of Washington",
+  category: "Culture",
+  address: "PO BOX 84601, Seattle, WA 98124",
+  lat: 47.60621,
+  lng: -122.33207,
+},
+
+{
+  name: "Wing Luke Asian Museum",
+  category: "Culture",
+  address: "719 S. King Street, Seattle, Washington 98104",
+  lat: 47.59825,
+  lng: -122.32396,
+},
+
+{
+  name: "Asian Service Center",
+  category: "Culture",
+  address: "22727 Hwy 99, Suite 201A, Edmonds WA 98026",
+  lat: 47.79262,
+  lng: -122.34479,
+},
+{
+  name: "Greater Seattle Chinese Chamber of Commerce",
+  category: "Career",
+  address: "P.O. Box 3182, Seattle, WA 98114",
+  lat: 47.60621,
+  lng: -122.33207,
+},
+{
+  name: "WAPI Community Services",
+  category: "Health",
+  address: "861 Poplar Pl S, Seattle, WA 98144",
+  lat: 47.59490,
+  lng: -122.30263,
+},
+
+{
+  name: "National Asian American Pacific Islander Mental Health Association (NAAPIMHA)",
+  category: "Health",
+  address: "1215 19th St Ste A, Denver, CO 80202",
+  lat: 39.75074,
+  lng: -104.99894,
+},
+
+{
+  name: "Anise Health",
+  category: "Health",
+  address: "285 Nostrand Ave, Unit 116, Brooklyn, NY 11216",
+  lat: 40.68287,
+  lng: -73.95085,
+},
+
+{
+  name: "Pacific Asian Counseling Services",
+  category: "Health",
+  address: "8616 La Tijera Blvd., Suite 200, Los Angeles, CA 90045",
+  lat: 33.95984,
+  lng: -118.37203,
+},
+
+{
+  name: "South Asian Public Health Association",
+  category: "Health",
+  address: "Baltimore, MD",
+  lat: 39.29038,
+  lng: -76.61219,
+},
+
+{
+  name: "Asian Mental Health Project",
+  category: "Health",
+  address: "Fontana, CA 92336, USA.",
+  lat: 34.09223,
+  lng: -117.43505,
+},
+
+{
+  name: "Yellow Chair Collective",
+  category: "Health",
+  address: "303 N Glenoaks Blvd, Burbank, CA 91502",
+  lat: 34.18189,
+  lng: -118.30902,
+},
+
+{
+  name: "Asian American Federation",
+  category: "Health",
+  address: "120 Wall Street, 9th Floor, New York, NY 10005",
+  lat: 40.70437,
+  lng: -74.00769,
+},
+
+{
+  name: "Mango Tree Counseling & Consulting",
+  category: "Health",
+  address: "21 S 11th St #303, Philadelphia, PA 19107",
+  lat: 39.95060,
+  lng: -75.15802,
+},
+
+{
+  name: "Mental Health Association for Chinese Communities",
+  category: "Health",
+  address: "3610 Castro Valley Blvd Ste 210, Castro Valley, CA 94546",
+  lat: 37.69414,
+  lng: -122.07346,
+},
+
+{
+  name: "National Asian Pacific American Families Allied for Substance Awareness and Harm Reduction",
+  category: "Health",
+  address: "1500 W Alhambra Rd Unit 4, Alhambra, CA 91801",
+  lat: 34.09438,
+  lng: -118.13977,
+},
+
+{
+  name: "Asian & Pacific Islander American Health Forum",
+  category: "Health",
+  address: "461 Bush Street, Suite 400, San Francisco, CA 94108",
+  lat: 37.79079,
+  lng: -122.40390,
+},
+
 ];
 
 export default function MapPage() {
