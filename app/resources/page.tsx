@@ -1,6 +1,20 @@
 "use client"
 import React, { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
+import {
+  Search,
+  SlidersHorizontal,
+  Bookmark,
+  BookOpen,
+  Briefcase,
+  HeartPulse,
+  Globe,
+  Scale,
+  HelpingHand,
+  MessageCircle,
+  CreditCard,
+  Users,
+} from "lucide-react"
 const topResources = [
   {
     rank: "01",
@@ -413,6 +427,33 @@ export default function ResourcesPage() {
   const categories = ["All", "Legal", "Education", "Career", "Health", "Culture"]
   const types = ["All", "Volunteer", "Counseling", "Financial Aid", "Community Programs", "Mentorship"]
 
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const params = new URLSearchParams(window.location.search)
+    const categoryFromUrl = params.get("category")
+    if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+      setActiveCategory(categoryFromUrl)
+    }
+  }, [categories])
+
+  const categoryIconMap: Record<string, React.ElementType> = {
+    All: Bookmark,
+    Legal: Scale,
+    Education: BookOpen,
+    Career: Briefcase,
+    Health: HeartPulse,
+    Culture: Globe,
+  }
+
+  const typeIconMap: Record<string, React.ElementType> = {
+    All: Users,
+    Volunteer: HelpingHand,
+    Counseling: MessageCircle,
+    "Financial Aid": CreditCard,
+    "Community Programs": Users,
+    Mentorship: BookOpen,
+  }
+
   const favoriteSet = useMemo(() => new Set(favorites), [favorites])
 
   // Loading favorites from localStorage
@@ -462,104 +503,8 @@ export default function ResourcesPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-
       
-      {/* PAGE TITLE */}
-       <section className="py-32">
-        <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
-          <div className="mx-auto max-w-[92rem]">
-            <div className="grid w-full grid-cols-[1fr_minmax(0,44rem)_1fr] items-center gap-6">
-              <div className="flex justify-center lg:justify-start">
-                <img
-                  src="/doodlered.png"
-                  alt="Red doodle accent"
-                  className="h-28 w-auto object-contain md:h-36"
-                />
-              </div>
-              <div className="mx-auto w-full text-center">
-                <h2 className="text-balance text-5xl font-bold md:text-6xl">
-                  Highlighted Resources
-                </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-balance text-xl text-base-content/70 md:text-2xl">
-                  From our large database of resources, here are some of the most popular and impactful organizations that our community has found helpful. Explore these highlighted resources to find support, education, and connection.
-                </p>
-              </div>
-              <div className="flex justify-center lg:justify-end">
-                <img
-                  src="/yellowStarish.png"
-                  alt="Yellow doodle accent"
-                  className="h-32 w-auto object-contain md:h-40"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="pb-8">
-        <div className="mx-auto w-full max-w-[92rem] px-4 md:px-8 lg:px-10">
-          <ul className="list rounded-box bg-base-100 shadow-md">
-            <li className="p-4 pb-2 text-xs tracking-wide opacity-60">
-              Top Three Resources
-            </li>
-
-            {topResources.map((resource) => (
-              <li key={resource.rank} className="list-row">
-                <div className="tabular-nums text-4xl font-thin opacity-30">
-                  {resource.rank}
-                </div>
-                <div>
-                  <img
-                    className="size-14 rounded-box object-cover"
-                    src={resource.imageSrc}
-                    alt={resource.title}
-                  />
-                </div>
-                <div className="list-col-grow">
-                  <div className="text-lg font-semibold">{resource.title}</div>
-                  <div className="text-xs font-semibold uppercase opacity-60">
-                    {resource.subtitle} • {resource.category}
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-base-content/75">
-                    <span className="font-medium text-base-content">About:</span>{" "}
-                    {resource.about}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-base-content/75">
-                    <span className="font-medium text-base-content">What it does:</span>{" "}
-                    {resource.details}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-base-content/75">
-                    <span className="font-medium text-base-content">Contact:</span>{" "}
-                    {resource.contact}
-                  </p>
-                </div>
-                <a
-                  href="/resources"
-                  className="btn btn-square btn-ghost"
-                  aria-label={`View ${resource.title}`}
-                >
-                  <svg
-                    className="size-[1.2em]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <g
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path d="M6 3L20 12 6 21 6 3z"></path>
-                    </g>
-                  </svg>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
+      
        <section className="py-32">
         <div className="mx-auto w-full px-4 md:px-8 lg:px-10">
           <div className="mx-auto max-w-[92rem]">
@@ -609,20 +554,7 @@ export default function ResourcesPage() {
 
       {/* RESOURCE SEARCH */}
       <div className="flex items-center border rounded-full px-6 py-3 w-full max-w-6xl bg-white shadow-sm">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 text-gray-500 mr-3"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
+        <Search className="w-6 h-6 text-gray-500 mr-3" />
         <input
           type="text"
           placeholder="Search resources..."
@@ -636,41 +568,55 @@ export default function ResourcesPage() {
       <div className="flex flex-col items-center gap-6 p-4">
         {/* Category Filter */}
         <div className="flex flex-col items-center gap-2">
-          <h3 className="font-semibold text-lg text-white">Categories</h3>
+          <div className="flex items-center gap-2">
+            <SlidersHorizontal className="h-5 w-5 text-white" />
+            <h3 className="font-semibold text-lg text-white">Categories</h3>
+          </div>
           <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full border min-w-[120px] text-center transition-colors duration-200 ${
-                  activeCategory === cat
-                    ? "bg-[#ffc15e] text-black border-[#ffc15e]"
-                    : "bg-white text-black border-gray-300 hover:bg-[#ffc15e]/40"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const Icon = categoryIconMap[cat] || Bookmark
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full border min-w-[120px] text-center transition-colors duration-200 ${
+                    activeCategory === cat
+                      ? "bg-[#ffc15e] text-black border-[#ffc15e]"
+                      : "bg-white text-black border-gray-300 hover:bg-[#ffc15e]/40"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {cat}
+                </button>
+              )
+            })}
           </div>
         </div>
 
         {/* Type Filter */}
         <div className="flex flex-col items-center gap-2">
-          <h3 className="font-semibold text-lg text-white">Types</h3>
+          <div className="flex items-center gap-2 text-white">
+            <SlidersHorizontal className="h-5 w-5" />
+            <h3 className="font-semibold text-lg">Types</h3>
+          </div>
           <div className="flex flex-wrap justify-center gap-2">
-            {types.map((type) => (
-              <button
-                key={type}
-                onClick={() => setActiveType(type)}
-                className={`px-4 py-2 rounded-full border min-w-[120px] text-center transition-colors duration-200 ${
-                  activeType === type
-                    ? "bg-[#ffc15e] text-black border-[#ffc15e]"
-                    : "bg-white text-black border-gray-300 hover:bg-[#ffc15e]/40"
-                }`}
-              >
-                {type}
-              </button>
-            ))}
+            {types.map((type) => {
+              const Icon = typeIconMap[type] || Users
+              return (
+                <button
+                  key={type}
+                  onClick={() => setActiveType(type)}
+                  className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full border min-w-[120px] text-center transition-colors duration-200 ${
+                    activeType === type
+                      ? "bg-[#ffc15e] text-black border-[#ffc15e]"
+                      : "bg-white text-black border-gray-300 hover:bg-[#ffc15e]/40"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {type}
+                </button>
+              )
+            })}
           </div>
         </div>
       </div>
@@ -686,7 +632,7 @@ export default function ResourcesPage() {
           return (
             <div key={r.title} className="card relative shadow-xl p-5 rounded-lg text-white bg-[#6A0909]/90 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-white/80">
                   {r.category.join(", ")}
                 </span>
                 <button
@@ -701,21 +647,21 @@ export default function ResourcesPage() {
                   <HeartIcon className="h-5 w-5" />
                 </button>
               </div>
-              <h3 className="resource-title text-xl font-semibold mb-2">{r.title}</h3>
+              <h3 className="resource-title text-xl font-bold text-white mb-2">{r.title}</h3>
 
               <div className="resource-section mb-2">
-                <h4 className="font-semibold">About the Organization</h4>
-                <p>{r.about}</p>
+                <h4 className="font-bold text-white">About the Organization</h4>
+                <p className="text-white">{r.about}</p>
               </div>
 
               <div className="resource-section mb-2">
-                <h4 className="font-semibold">What the Resource Does</h4>
-                <p>{r.does}</p>
+                <h4 className="font-bold text-white">What the Resource Does</h4>
+                <p className="text-white">{r.does}</p>
               </div>
 
               <div className="resource-section mb-2">
-                <h4 className="font-semibold">Contact Information</h4>
-                <p>{r.contact}</p>
+                <h4 className="font-bold text-white">Contact Information</h4>
+                <p className="text-white">{r.contact}</p>
               </div>
 
               <Link href={r.link} target="_blank" className="btn btn-primary mt-2">

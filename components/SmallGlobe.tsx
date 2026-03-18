@@ -43,16 +43,15 @@ export default function SmallGlobe({
         
         globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
-        cloudsImageUrl="https://unpkg.com/three-globe/example/img/earth-clouds.png"
-        cloudsAltitude={0.004}
+        showAtmosphere={false}
 
         pointsData={markers}
         pointLat="lat"
         pointLng="lng"
-        pointColor={(d: Marker) => d.color || "#ffcc00"}
-        pointAltitude={(d: Marker) => d.size || 0.02}
+        pointColor={(d: any) => d.color || "#ffcc00"}
+        pointAltitude={(d: any) => d.size || 0.02}
         pointRadius={0.3}
-        pointLabel={(d: Marker) => d.label || ""}
+        pointLabel={(d: any) => d.label || ""}
       />
       </div>
 

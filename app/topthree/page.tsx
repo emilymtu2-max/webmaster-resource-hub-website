@@ -12,7 +12,7 @@ const topResources = [
     details:
       "Free online and in-person English Language Learning classes led by experienced instructors, offered at various times and locations.",
     contact: "Call: (425) 462-9600 or (800) 462-9600",
-    imageSrc: "/LocalHelp.jpg",
+    imageSrc: "/library.jpg",
   },
   {
     rank: "02",
@@ -24,7 +24,7 @@ const topResources = [
     details:
       "Provides behavioral health services including mental health counseling, substance use disorder treatment, and problem gambling services.",
     contact: "Call: (206) 695-7600",
-    imageSrc: "/girlslaughing.png",
+    imageSrc: "/counseling.jpg",
   },
   {
     rank: "03",
@@ -36,7 +36,7 @@ const topResources = [
     details:
       "A classical Japanese strolling garden that hosts seasonal events, cultural programs, and educational tours about Japanese garden design and culture.",
     contact: "Call: (206) 684-4725",
-    imageSrc: "/aboutus-culture.jpg",
+    imageSrc: "/japanesegarden.jpg",
   },
 ];
 
@@ -77,7 +77,7 @@ export default function HighlightedResourcesPage() {
 
       <section className="pb-8">
         <div className="mx-auto w-full max-w-[92rem] px-4 md:px-8 lg:px-10">
-          <ul className="list rounded-box bg-base-100 shadow-md">
+          <ul className="list rounded-box bg-white shadow-md">
             <li className="p-4 pb-2 text-xs tracking-wide opacity-60">
               Top Three Resources
             </li>
