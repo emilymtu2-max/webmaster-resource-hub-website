@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { saveSession, SessionUser } from "@/lib/session";
-import { buildSiteUrl } from "@/lib/site-url";
 
 const asianCountries = [
   "Afghanistan",
@@ -103,12 +102,7 @@ export default function Signup() {
     if (data.success && data.user) {
       setStatusMessage("Signup successful—welcome!");
       saveSession(data.user as SessionUser);
-      const destination = buildSiteUrl("/account");
-      if (typeof window !== "undefined") {
-        window.location.assign(destination);
-      } else {
-        router.push("/account");
-      }
+      router.push("/account");
     } else {
       setStatusMessage(data.error || "Signup failed");
     }
