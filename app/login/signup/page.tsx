@@ -116,12 +116,7 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-[#f4ece1] text-gray-900">
-      {/* Header */}
-      <header className="w-full py-6 flex justify-center items-center bg-transparent border-b border-gray-200">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl font-bold text-gray-900">PulseAsia</span>
-        </div>
-      </header>
+      
 
       {/* Signup Form */}
       <main className="flex flex-col items-center justify-center min-h-[60vh] bg-transparent">
