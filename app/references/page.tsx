@@ -145,7 +145,7 @@ export default function References() {
         <div className="card-body">
           <h2 className="card-title text-3xl">Licenses</h2>
           <p className="text-lg">
-            All images are sourced from platforms like Unsplash, Pexels, and Freepik, which provide free or properly licensed media for use.
+            All images are sourced from platforms like Unsplash, Pexels, Canva, and Freepik, which provide free or properly licensed media for use.
           </p>
         </div>
       </div>
