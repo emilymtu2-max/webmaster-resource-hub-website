@@ -72,7 +72,7 @@ export default function References() {
           </p>
 
           <p className="text-lg">
-            For styling and UI design, we used Tailwind CSS alongside DaisyUI and shadcn/ui. Tailwind allowed us to directly control spacing, layout, colors, and responsiveness at a very granular level, while DaisyUI and shadcn provided higher-level components like cards, buttons, and layouts. This combination gave us both speed and flexibility, and we could quickly build clean interfaces while still customizing everything to match our vision instead of being locked into rigid templates.
+            For styling and UI design, we used Tailwind CSS alongside DaisyUI and shadcn/ui. Tailwind allowed us to directly control spacing, layout, colors, and responsiveness at a very granular level, while DaisyUI and shadcn provided higher-level components like cards, buttons, and layouts. In addition, icons were used from free shadcn icon libraries. This combination gave us both speed and flexibility, and we could quickly build clean interfaces while still customizing everything to match our vision instead of being locked into rigid templates.
           </p>
 
           <p className="text-lg">

@@ -466,8 +466,8 @@ export default function MapPage() {
       {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <div className="w-1/4 bg-gray-100 p-4 overflow-y-auto">
-          <h1 className="text-2xl font-bold mb-4">Resources</h1>
+        <div className="w-1/4 bg-[#f4ece1] p-4 overflow-y-auto text-stone-900 border-r border-red-900/15">
+          <h1 className="text-2xl font-bold mb-4 text-red-900">Resources</h1>
 
           {["Legal", "Health", "Education", "Culture", "Career"].map((category) => {
             const locs = locations.filter((l) => l.category === category);
@@ -475,16 +475,16 @@ export default function MapPage() {
 
             return (
               <div key={category} className="mb-6">
-                <h2 className="font-semibold text-lg mb-2">{category}</h2>
+                <h2 className="font-semibold text-lg mb-2 text-red-900">{category}</h2>
                 <ul className="space-y-2">
                   {locs.map((loc) => (
                     <li
                       key={loc.name}
-                      className="cursor-pointer p-2 rounded hover:bg-gray-200"
+                      className="cursor-pointer p-3 rounded-md bg-white border border-red-900/10 shadow-sm transition-colors hover:bg-red-50"
                       onClick={() => setSelectedLocation(loc)}
                     >
-                      <strong>{loc.name}</strong>
-                      <div className="text-sm text-gray-600">{loc.address}</div>
+                      <strong className="text-stone-900">{loc.name}</strong>
+                      <div className="text-sm text-stone-700">{loc.address}</div>
                     </li>
                   ))}
                 </ul>
