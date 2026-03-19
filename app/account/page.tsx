@@ -106,11 +106,11 @@ export default function AccountPage() {
           <article className="p-6 rounded-2xl border border-gray-200 bg-gradient-to-b from-white to-gray-50">
             <h2 className="text-lg font-semibold text-gray-800">What’s next?</h2>
             <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-              Use this account page as a launchpad—bookmark it to quickly return to your story or share resources tailored to your profile. There aren’t any hidden tokens; the data shown here is stored locally in your browser session.
+              Welcome to the community! Start exploring resources created with you in mind—from local stories to global insights. Whether you're here to learn, share, or connect, there's something waiting for you.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <Link href="/form-suggestions-page" className="btn btn-outline btn-sm">
-                Suggest Resources😭✌️💔
+                Suggest Resources
               </Link>
               <Link href="/resources" className="btn btn-primary btn-sm">
                 Explore resources
