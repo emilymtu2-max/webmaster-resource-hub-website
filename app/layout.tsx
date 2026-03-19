@@ -84,8 +84,8 @@ export default function RootLayout({
             <a href="tel:+11234567890" className="link link-hover">
               (123) 456-7890
             </a>
-            <a href="mailto:info@pulseasia.com" className="link link-hover">
-              info@pulseasia.com
+            <a href="mailto:pulseasiahelp@gmail.com" className="link link-hover">
+              pulseasiahelp@gmail.com
             </a>
           </nav>
         </footer>
