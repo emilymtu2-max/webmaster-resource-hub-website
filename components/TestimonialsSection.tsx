@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
         <p className="mx-auto mt-2 max-w-4xl text-center text-xl text-white/80 md:text-2xl">
-          These immigrant stories highlight the real impact of our work and the importance of accessible resources and community support for Asian American
+          These immigrant stories highlight the real impact of our work and the importance of accessible resources and community support for Asian American. (The testimonials featured on this website are fictional and created for illustrative purposes only. They do not represent real individuals, experiences, or opinions.)
         </p>
       </div>
       <div className="page-container max-w-[92rem] mt-6">

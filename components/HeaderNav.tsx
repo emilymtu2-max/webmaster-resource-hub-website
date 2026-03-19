@@ -22,7 +22,7 @@ import AccountButton from "@/components/AccountButton";
 const topLevelLinks = [
   { href: "/about", label: "About Us" },
   { href: "/resources", label: "Resource Hub" },
-  { href: "/references", label: "References" },
+  { href: "/references", label: "Reference Page" },
 ];
 
 const groupedNavLinks = [

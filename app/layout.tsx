@@ -67,7 +67,7 @@ export default function RootLayout({
               Suggestions
             </Link>
             <Link href="/references" className="link link-hover">
-              References
+              Reference Page
             </Link>
             <Link href="/stat" className="link link-hover">
               Immigration Stats
