@@ -42,14 +42,14 @@ const carouselCards = [
   },
   {
     title: "Tanush's Path",
-    person: "Peiying",
+    person: "Tanush",
     resourceCategory: "cultural resources",
     description:
       "Thanks to PulseAsia, I discovered local cultural events that helped me connect with my heritage and build a supportive community in my new city.",
   },
   {
     title: "Rahul's Story",
-    person: "Gojo",
+    person: "Rahul",
     resourceCategory: "community support resources",
     description:
       "PulseAsia provided me with resources and connections that made my transition to life in the Pacific Northwest smoother and more fulfilling. I found a community that truly understands and supports me.",
